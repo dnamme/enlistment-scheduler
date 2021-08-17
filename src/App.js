@@ -1,7 +1,8 @@
 import InputContainer from './components/InputContainer'
 import Timetable from './components/Timetable'
+import './App.css'
 
-export const App = () => {
+function App() {
   return (
     <div className="app">
       <InputContainer />
@@ -9,3 +10,5 @@ export const App = () => {
     </div>
   )
 }
+
+export default App

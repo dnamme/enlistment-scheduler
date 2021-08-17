@@ -1,19 +1,34 @@
 .app {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-areas: "input table";
 }
 
-.timetable {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+.input-container {
+  height: 100%;
+  background-color: beige;
 }
 
-@media screen and (max-display-ratio: 3 / 2) {
+.timetable {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background-color: gray;
+}
+
+@media screen and (max-aspect-ratio: 1/1) {
   .app {
     height: revert;
     display: block;
+  }
+
+  .input-container {
+    height: auto;
+  }
+
+  .timetable {
+    height: auto;
   }
 }
