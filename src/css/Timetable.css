@@ -4,3 +4,15 @@
   grid-template-columns: repeat(6, 1fr);
   background-color: gray;
 }
+
+.timetable > * {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content repeat(20, 1fr);
+}
+
+.timetable > * > .day {
+  text-align: center;
+  font-weight: bold;
+}
