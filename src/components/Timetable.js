@@ -1,3 +1,5 @@
+import CourseBlock from './CourseBlock'
+
 function Timetable({ data }) {
   const daysOfWeek = ['M', 'T', 'W', 'Th', 'F', 'S']
 
@@ -6,6 +8,7 @@ function Timetable({ data }) {
       {data.map((col, index) => (
         <div key={index}>
           <p className="day">{daysOfWeek[index]}</p>
+          {col.map((course) => <CourseBlock course={course} />)}
         </div>
       ))}
     </div>

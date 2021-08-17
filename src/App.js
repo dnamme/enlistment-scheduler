@@ -8,7 +8,11 @@ import './css/Timetable.css'
 
 function App() {
   const [data, setData] = useState([])
-  const [groupedData, setGroupedData] = useState([[], [], [], [], [], []])
+  const [groupedData, setGroupedData] = useState([
+    [
+      {name: 'CSCI 152', start: 0, end: 5},
+      {name: 'CSCI 22', start: 4, end: 7}
+    ], [], [], [], [], []])
 
   useEffect(() => {
     console.log('data changed!')
