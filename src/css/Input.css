@@ -1,0 +1,16 @@
+.input-container {
+  height: 100%;
+  background-color: beige;
+}
+
+.input-group {
+  border: 1px solid black;
+}
+
+.input-header {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  background-color: darkslateblue;
+}

@@ -1,6 +1,8 @@
 import InputContainer from './components/InputContainer'
 import Timetable from './components/Timetable'
-import './App.css'
+import './css/App.css'
+import './css/Input.css'
+import './css/Timetable.css'
 
 function App() {
   return (
