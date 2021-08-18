@@ -10,8 +10,8 @@ function App() {
   const [data, setData] = useState([])
   const [groupedData, setGroupedData] = useState([
     [
-      {name: 'CSCI 152', start: 0, end: 5},
-      {name: 'CSCI 22', start: 4, end: 7}
+      {code: 'CSCI 152', start: 0, end: 5, startTime: '0900', endTime: '1300'},
+      {code: 'CSCI 22', start: 4, end: 7, startTime: '1200', endTime: '1500'}
     ], [], [], [], [], []])
 
   useEffect(() => {

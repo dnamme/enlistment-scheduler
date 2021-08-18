@@ -6,7 +6,11 @@ function CourseBlock({ course }) {
   }
 
   return (
-    <p className="course-block" style={style}>{course.name}</p>
+    <p className="course-block" style={style}>
+      <p className="time start">{course.startTime}</p>
+      <p className="course-code">{course.code}</p>
+      <p className="time end">{course.endTime}</p>
+    </p>
   )
 }
 

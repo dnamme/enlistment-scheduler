@@ -22,6 +22,31 @@
   border-radius: 0.5rem;
   margin: 0;
   text-align: center;
-  opacity: 0.8;
+  opacity: 0.7;
   grid-column: 1 / -1;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.course-block > p {
+  margin: 0;
+}
+
+.course-block > .course-code {
+  text-align: center;
+}
+
+.course-block > .time {
+  font-size: 0.8em;
+}
+
+.course-block > .time.start { align-self: flex-start; }
+.course-block > .time.end   { align-self: flex-end; }
+
+@media screen and (max-aspect-ratio: 1/1) {
+  .timetable > * {
+    grid-template-rows: min-content repeat(20, 64px);
+  }
 }
