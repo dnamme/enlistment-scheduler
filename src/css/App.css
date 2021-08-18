@@ -1,0 +1,30 @@
+.app {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "input table";
+}
+
+.square-button {
+  padding: 0.5rem;
+  background-color: darkgray;
+  cursor: pointer;
+
+  color: white;
+}
+
+@media screen and (max-aspect-ratio: 1/1) {
+  .app {
+    height: revert;
+    display: block;
+  }
+
+  .input-container {
+    height: auto;
+  }
+
+  .timetable {
+    height: auto;
+  }
+}
