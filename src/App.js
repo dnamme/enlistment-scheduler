@@ -10,7 +10,7 @@ function App() {
   const [data, setData] = useState([])
   const [groupedData, setGroupedData] = useState({
     start: 8,
-    end: 18,
+    end: 17,
     data: [
       [
         {code: 'MATH 51.3', start: 8, end: 9, startTime: '0800', endTime: '0900'},
