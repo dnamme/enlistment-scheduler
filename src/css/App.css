@@ -6,7 +6,8 @@
   grid-template-areas: "input table";
 }
 
-button {
+button,
+.button {
   display: inline-block;
   background: darkslateblue;
   color: white;
