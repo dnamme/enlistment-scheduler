@@ -7,11 +7,11 @@
 }
 
 .square-button {
-  padding: 0.5rem;
+  padding: 0.25rem;
   background-color: darkgray;
   cursor: pointer;
-
   color: white;
+  border: 1px solid darkslategray;
 }
 
 @media screen and (max-aspect-ratio: 1/1) {

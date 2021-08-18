@@ -1,6 +1,6 @@
 import InputHeader from './InputHeader'
 
-function InputGroup() {
+function InputGroup({ courses }) {
   return (
     <div className="input-group">
       <InputHeader />

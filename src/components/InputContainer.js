@@ -4,6 +4,8 @@ function InputContainer() {
   return (
     <div className="input-container">
       <InputGroup />
+      <InputGroup />
+      <InputGroup />
     </div>
   )
 }
