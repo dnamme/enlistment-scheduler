@@ -1,7 +1,7 @@
-function CourseBlock({ course }) {
+function CourseBlock({ course, start }) {
   const style = {
-    gridRowStart: course.start + 2,
-    gridRowEnd: course.end + 2,
+    gridRowStart: (course.start - start)*2 + 2,
+    gridRowEnd: (course.end - start)*2 + 2,
     backgroundColor: course.color ? course.color : 'white'
   }
 

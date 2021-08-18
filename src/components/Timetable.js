@@ -5,10 +5,12 @@ function Timetable({ data }) {
 
   return (
     <div className="timetable">
-      {data.map((col, index) => (
-        <div key={index}>
+      {data.data.map((col, index) => (
+        <div key={index} style={{
+          gridTemplateRows: `min-content repeat(${(data.end - data.start)*2}, 1fr)`
+        }}>
           <p className="day">{daysOfWeek[index]}</p>
-          {col.map((course) => <CourseBlock course={course} />)}
+          {col.map((course) => <CourseBlock course={course} start={data.start} />)}
         </div>
       ))}
     </div>
