@@ -1,13 +1,10 @@
 import { FaClipboardList, FaPlus, FaTrashAlt } from 'react-icons/fa'
 
-function InputHeader() {
+function InputHeader({ onCopyClick }) {
   const onAdd = () => {
   }
 
   const onDelete = () => {
-  }
-
-  const onPaste = () => {
   }
 
   return (
@@ -15,7 +12,7 @@ function InputHeader() {
       <div className="square-button" onClick={onAdd}>
         <FaPlus />Add
       </div>
-      <div className="square-button" onClick={onPaste}>
+      <div className="square-button" onClick={onCopyClick}>
         <FaClipboardList />Paste from AISIS
       </div>
       <div className="square-button" onClick={onDelete}>

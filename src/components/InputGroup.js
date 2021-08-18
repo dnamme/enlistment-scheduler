@@ -1,9 +1,9 @@
 import InputHeader from './InputHeader'
 
-function InputGroup({ courses }) {
+function InputGroup({ courses, onCopyClick }) {
   return (
     <div className="input-group">
-      <InputHeader />
+      <InputHeader onCopyClick={onCopyClick} />
     </div>
   )
 }

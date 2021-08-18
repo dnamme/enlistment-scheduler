@@ -4,6 +4,7 @@ import InputContainer from './components/InputContainer'
 import Timetable from './components/Timetable'
 import './css/App.css'
 import './css/Input.css'
+import './css/Modal.css'
 import './css/Timetable.css'
 
 function App() {
@@ -44,9 +45,15 @@ function App() {
     console.log('data changed!')
   }, data)
 
+
+  const onManualSubmit = () => {}
+
+  const onCopySubmit = (data) => {}
+
+
   return (
     <div className="app">
-      <InputContainer />
+      <InputContainer onManualSubmit={onManualSubmit} onCopySubmit={onCopySubmit} />
       <Timetable data={groupedData} />
     </div>
   )
