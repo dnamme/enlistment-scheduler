@@ -36,7 +36,7 @@ function App() {
         {code: 'ArtAp 10', start: 9, end: 10, startTime: '0900', endTime: '1000'},
         {code: 'PHYS 23.11', start: 11, end: 12, startTime: '1100', endTime: '1200'},
         {code: 'PHYS 23.12', start: 13, end: 15, startTime: '1300', endTime: '1500'},
-      ], []
+      ],
     ]
   })
 

@@ -1,7 +1,9 @@
 .timetable {
   height: 100%;
   display: grid;
-  grid-template-columns: min-content repeat(6, 1fr);
+  grid-template-columns: min-content;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
   background-color: gray;
 }
 
