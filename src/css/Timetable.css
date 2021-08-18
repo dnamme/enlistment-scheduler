@@ -26,26 +26,28 @@
   text-align: center;
   opacity: 0.7;
   grid-column: 1 / -1;
-  display: flex;
-  flex-flow: column nowrap;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
   align-items: center;
-  justify-content: space-between;
 }
 
-.course-block > p {
+.course-block > * {
   margin: 0;
+  grid-column: 1 / -1;
 }
 
 .course-block > .course-code {
   text-align: center;
+  grid-row: 1 / -1;
 }
 
 .course-block > .time {
   font-size: 0.8em;
 }
 
-.course-block > .time.start { align-self: flex-start; }
-.course-block > .time.end   { align-self: flex-end; }
+.course-block > .time.start { grid-row: 1 / 2; justify-self: flex-start; }
+.course-block > .time.end   { grid-row: 3 / 4; justify-self: flex-end; }
 
 @media screen and (max-aspect-ratio: 1/1) {
   .timetable > * {
