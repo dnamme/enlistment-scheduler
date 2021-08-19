@@ -5,9 +5,9 @@ function CopyModal({ onExit, onCopySubmit }) {
 
   return (
     <div className="modal">
-      {/* <div className="modal-backdrop" onClick={onExit}></div> */}
       <div className="modal-content">
-        <h3>Go to Class Schedule on AISIS and paste rows from the tables below</h3>
+        <h4>Go to Class Schedule on AISIS and paste rows from the tables below</h4>
+
         <form className="copy-form">
           <input
             type="text"
@@ -22,6 +22,8 @@ function CopyModal({ onExit, onCopySubmit }) {
             onClick={onCopySubmit}
           />
         </form>
+
+        <button className="outline" onClick={onExit}>Cancel</button>
       </div>
     </div>
   )
