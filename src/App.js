@@ -43,12 +43,14 @@ function App() {
 
   useEffect(() => {
     console.log('data changed!')
-  }, data)
+  }, [data])
 
 
-  const onManualSubmit = () => {}
+  const onManualSubmit = (d) => {}
 
-  const onCopySubmit = (data) => {}
+  const onCopySubmit = (d) => {
+    console.log(d);
+  }
 
 
   return (

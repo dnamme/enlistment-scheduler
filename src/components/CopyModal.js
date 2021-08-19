@@ -19,7 +19,7 @@ function CopyModal({ onExit, onCopySubmit }) {
             type="submit"
             class="button"
             value="Add"
-            onClick={onCopySubmit}
+            onClick={() => onCopySubmit(data)}
           />
         </form>
 
