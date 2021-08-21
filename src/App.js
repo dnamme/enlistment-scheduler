@@ -19,91 +19,91 @@ import './css/Timetable.css'
 function App() {
   const [preEnlistedData, setPreEnlistedData] = useState([])
   const [data, setData] = useState([
-    {
-      color: '#3F51B5',
-      keyCode: 'CSCI 30',
-      courses: [
-        {
-          "code": "CSCI 30",
-          "section": "A",
-          "name": "DATA STRUCTURES AND ALGORITHMS",
-          "units": "3",
-          "time": "T-TH 0930-1100",
-          "room": "TBA",
-          "instructor": "GUADALUPE, Brian Christopher",
-          "max_slots": "35",
-          "lang": "ENG",
-          "level": "U",
-          "free_slots": "0",
-          "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
-          "s": "N",
-          "p": "N",
-          selected: false
-        }, {
-          "code": "CSCI 30",
-          "section": "B",
-          "name": "DATA STRUCTURES AND ALGORITHMS",
-          "units": "3",
-          "time": "T-TH 1100-1230",
-          "room": "TBA",
-          "instructor": "GUADALUPE, Brian Christopher",
-          "max_slots": "35",
-          "lang": "ENG",
-          "level": "U",
-          "free_slots": "0",
-          "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
-          "s": "N",
-          "p": "N",
-          selected: true
-        }, {
-          "code": "CSCI 30",
-          "section": "C",
-          "name": "DATA STRUCTURES AND ALGORITHMS",
-          "units": "3",
-          "time": "T-TH 1100-1230",
-          "room": "TBA",
-          "instructor": "PANGAN, Zachary",
-          "max_slots": "35",
-          "lang": "ENG",
-          "level": "U",
-          "free_slots": "8",
-          "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
-          "s": "N",
-          "p": "N",
-          selected: false
-        }
-      ]
-    }
+    // {
+    //   color: '#3F51B5',
+    //   keyCode: 'CSCI 30',
+    //   courses: [
+    //     {
+    //       "code": "CSCI 30",
+    //       "section": "A",
+    //       "name": "DATA STRUCTURES AND ALGORITHMS",
+    //       "units": "3",
+    //       "time": "T-TH 0930-1100",
+    //       "room": "TBA",
+    //       "instructor": "GUADALUPE, Brian Christopher",
+    //       "max_slots": "35",
+    //       "lang": "ENG",
+    //       "level": "U",
+    //       "free_slots": "0",
+    //       "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
+    //       "s": "N",
+    //       "p": "N",
+    //       selected: false
+    //     }, {
+    //       "code": "CSCI 30",
+    //       "section": "B",
+    //       "name": "DATA STRUCTURES AND ALGORITHMS",
+    //       "units": "3",
+    //       "time": "T-TH 1100-1230",
+    //       "room": "TBA",
+    //       "instructor": "GUADALUPE, Brian Christopher",
+    //       "max_slots": "35",
+    //       "lang": "ENG",
+    //       "level": "U",
+    //       "free_slots": "0",
+    //       "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
+    //       "s": "N",
+    //       "p": "N",
+    //       selected: true
+    //     }, {
+    //       "code": "CSCI 30",
+    //       "section": "C",
+    //       "name": "DATA STRUCTURES AND ALGORITHMS",
+    //       "units": "3",
+    //       "time": "T-TH 1100-1230",
+    //       "room": "TBA",
+    //       "instructor": "PANGAN, Zachary",
+    //       "max_slots": "35",
+    //       "lang": "ENG",
+    //       "level": "U",
+    //       "free_slots": "8",
+    //       "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
+    //       "s": "N",
+    //       "p": "N",
+    //       selected: false
+    //     }
+    //   ]
+    // }
   ])
   const [groupedData, setGroupedData] = useState({
     start: 8,
     end: 17,
     data: [
-      [
-        {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
-        {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-        {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
-      ], [
-        {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-        {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
-        {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
-        {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
-      ], [
-        {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
-        {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-        {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
-        {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
-      ], [
-        {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-        {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
-        {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
-        {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
-      ], [
-        {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
-        {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-        {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
-        {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
-      ], []
+      // [
+      //   {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
+      //   {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+      //   {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
+      // ], [
+      //   {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+      //   {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
+      //   {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
+      //   {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
+      // ], [
+      //   {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
+      //   {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+      //   {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
+      //   {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
+      // ], [
+      //   {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+      //   {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
+      //   {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
+      //   {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
+      // ], [
+      //   {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
+      //   {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+      //   {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
+      //   {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
+      // ], []
     ]
   })
 
@@ -152,7 +152,45 @@ function App() {
     })
 
     // adding selected input
-    
+    data.forEach((group) => {
+      for (let i = 0; i < group.courses.length; i++) {
+        if (group.courses[i].selected) {
+          let rawDays = group.courses[i].time.split(' ')[0]
+          let days = []
+          for (let j = 0; j < 6; j++) {
+            if (rawDays.includes(daysOfWeek[j]) || rawDays.includes('D')) days[j] = true
+            else days[j] = false
+          }
+
+          let intStart = parseInt(group.courses[i].time.split(' ')[1].split('-')[0]) // in xxxx form
+          let intEnd = parseInt(group.courses[i].time.split(' ')[1].split('-')[1]) // in xxxx form
+
+          let rstart_hr = Math.floor(intStart/100) + (intStart%100)/60 // in x.x form
+          let rend_hr = Math.floor(intEnd/100) + (intEnd%100)/60 // in x.x form
+
+          if (rstart_hr < nstart) nstart = rstart_hr
+          if (rend_hr > nend) nend = rend_hr
+
+          let st_hr = Math.floor(intStart/100)
+          let ed_hr = Math.floor(intEnd/100)
+
+          for (let j = 0; j < 6; j++) {
+            if (days[j]) {
+              ndata[j].push({
+                color: group.color,
+                code: group.courses[i].code,
+                start: rstart_hr, // in x.x form
+                end: rend_hr, // in x.x form
+                startTime: `${st_hr > 12 ? st_hr-12 : st_hr}:${(intStart%100).toString().padStart(2, '0')} ${rstart_hr < 1200 ? 'AM' : 'PM'}`,
+                endTime: `${ed_hr > 12 ? ed_hr-12 : ed_hr}:${(intEnd%100).toString().padStart(2, '0')} ${rend_hr < 1200 ? 'AM' : 'PM'}`
+              })
+            }
+          }
+
+          break
+        }
+      }
+    })
 
     // change state
     setGroupedData({
