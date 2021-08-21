@@ -103,9 +103,24 @@ function App() {
   })
 
   useEffect(() => {
-    // rebuild timetable?
-    console.log('data changed!')
+    // rebuild timetable
   }, [data])
+
+
+  const selectClassFromGroup = (kc, code, section) => {
+    let nrd = data
+
+    nrd.forEach((group) => {
+      if (group.keyCode === kc) {
+        group.courses.forEach((row) => {
+          if (row.code === code && row.section === section) row.selected = true
+          else row.selected = false
+        })
+      }
+    })
+
+    setData([...nrd])
+  }
 
 
   const onManualAddSubmit = (d) => {}
@@ -120,12 +135,23 @@ function App() {
       let cols = row.split('\t')
 
       if (cols.length === 14) {
+        let rawDays = cols[4].split(' ')[0].toUpperCase()
+        let daysOfWeek = ['M', 'T', 'W', 'TH', 'F', 'S']
+        let days = []
+        for (let i = 0; i < 6; i++) {
+          if (rawDays.includes(daysOfWeek[i])) days[i] = true
+          else days[i] = false
+        }
+
+        let st = parseInt(cols[4].split(' ')[1].split('-')[0])
+        let en = parseInt(cols[4].split(' ')[1].split('-')[1])
+
         new_data.push({
           code: cols[0],
           section: cols[1],
           name: cols[2],
           units: cols[3],
-          time: cols[4],
+          time: cols[4], // raw string
           room: cols[5],
           instructor: cols[6],
           max_slots: cols[7],
@@ -135,6 +161,10 @@ function App() {
           remarks: cols[11],
           s: cols[12], // not needed
           p: cols[13], // not needed
+          selected: false, // default
+          _days: days,
+          _start: Math.floor(st/100) + (st%100)/100, // in x.x (hr) form
+          _end: Math.floor(en/100) + (st%100)/100, // in x.x (hr) form
         })
       }
     })
@@ -142,7 +172,6 @@ function App() {
     let nrd = data
     nrd.forEach((group) => {
       if (group.keyCode === kc) {
-        console.log('found')
         group.courses.push(...new_data)
       }
     })
@@ -235,7 +264,7 @@ function App() {
                   <InputRow
                     key={`INPUT-ROW_${group.keyCode}_${row.code}_${row.section}`}
                     row={row}
-                    onSelect={() => {}}
+                    onSelect={() => selectClassFromGroup(group.keyCode, row.code, row.section)}
                     onDelete={() => deleteRow(group.keyCode, row.code, row.section)} />)
                 : <p style={emptyTextStyle}>
                     Click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add any classes!
