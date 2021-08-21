@@ -4,31 +4,39 @@ function Timetable({ data }) {
   const daysOfWeek = ['M', 'T', 'W', 'Th', 'F', 'S']
 
   const colStyle = {
-    gridTemplateRows: `min-content repeat(${(data.end - data.start)*2}, 1fr)`
+    gridTemplateRows: `48px repeat(${(data.end - data.start) * 2}, 1fr)`
   }
 
   const timeStamps = [
-    <p className="heading">Time</p>
-  ];
+    <p key={`TIMETABLE-HEADING`} className="heading" />
+  ]
 
   for (let i = data.start; i < data.end; i++) {
     timeStamps.push(
-      <p style={{
-        gridRowStart: (i - data.start)*2 + 2,
-        gridRowEnd: (i - data.start)*2 + 3
-      }}>{i}</p>
+      <p
+        key={`TIMETABLE-TIME_${i}`}
+        className="timestamp"
+        style={{
+          gridRowStart: (i - data.start)*2 + 2,
+          gridRowEnd: (i - data.start)*2 + 3
+        }}>{i}</p>
     )
   }
 
   return (
     <div className="timetable">
       <div style={{...colStyle, alignContent: 'flex-start'}}>{timeStamps}</div>
-      {data.data.map((col, index) => (
-        <div key={index} style={colStyle}>
-          <p className="heading">{daysOfWeek[index]}</p>
-          {col.map((course) => <CourseBlock course={course} start={data.start} />)}
-        </div>
-      ))}
+      {
+        data.data.map((col, index) =>
+          <div key={`TIMETABLE-COL_${daysOfWeek[index]}`} style={colStyle}>
+            <p className="heading">{daysOfWeek[index]}</p>
+
+            { col.map((course) =>
+              <CourseBlock key={`TIMETABLE-BLOCK_${daysOfWeek[index]}_${course.code}`} course={course} start={data.start} />)
+            }
+          </div>
+        )
+      }
     </div>
   )
 }
