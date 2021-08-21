@@ -12,8 +12,10 @@ function InputHeader({ color, onCopyClick }) {
       <div style={{
         width: '24px',
         height: '24px',
+        boxSizing: 'border-box',
         borderRadius: '24px',
-        backGroundColor: color
+        backgroundColor: color,
+        border: '2px solid black'
       }} />
       <div className="square-button" onClick={onAdd}>
         <FaPlus /> Add Manually
