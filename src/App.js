@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
+import { FaPlus } from 'react-icons/fa'
+import { v4 as uuidv4 } from 'uuid'
+import { randomColor } from 'randomcolor'
 
+import IconButton from './components/IconButton'
 import InputHeader from './components/InputHeader'
 import InputRow from './components/InputRow'
 import Timetable from './components/Timetable'
@@ -123,7 +127,7 @@ function App() {
   }
 
 
-  const onManualAddSubmit = (d) => {}
+  const onManualAddSubmit = (kc, d) => {}
 
   const onCopySubmit = (kc, d) => {
     setCopyModalCode(null)
@@ -209,7 +213,7 @@ function App() {
 
   return (
     <div className="app">
-      <div>
+      <div style={{ overflowY: 'scroll' }}>
         {/* modals */}
         {
           // manualAddCode != null && <AddModal
@@ -273,7 +277,32 @@ function App() {
           </div>
         )}
       </div>
+
       <Timetable data={groupedData} />
+
+      {/* fixed, floating button */}
+      <IconButton
+        cStyle={{
+          position: 'fixed',
+          bottom: 0,
+          left: '40px',
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+          border: '1px solid gray'
+        }}
+        icon={<FaPlus />}
+        onClick={() => {
+          setData([
+            ...data,
+            {
+              color: randomColor(),
+              keyCode: uuidv4(),
+              courses: []
+            }
+          ])
+        }}
+        bgColor="white"
+        text="Add Group" />
     </div>
   )
 }
