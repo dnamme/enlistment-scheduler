@@ -10,13 +10,13 @@ function InputHeader({ onCopyClick }) {
   return (
     <div className="input-header">
       <div className="square-button" onClick={onAdd}>
-        <FaPlus />Add
+        <FaPlus /> Add Manually
       </div>
       <div className="square-button" onClick={onCopyClick}>
-        <FaClipboardList />Paste from AISIS
+        <FaClipboardList /> Paste from AISIS
       </div>
       <div className="square-button" onClick={onDelete}>
-        <FaTrashAlt />Delete Group
+        <FaTrashAlt /> Delete Group
       </div>
     </div>
   )

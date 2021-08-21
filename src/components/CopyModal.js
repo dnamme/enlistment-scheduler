@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function CopyModal({ onExit, onCopySubmit }) {
+function CopyModal({ index, onExit, onCopySubmit }) {
   const [data, setData] = useState('')
 
   return (
@@ -8,21 +8,15 @@ function CopyModal({ onExit, onCopySubmit }) {
       <div className="modal-content">
         <h4>Go to Class Schedule on AISIS and paste rows from the tables below</h4>
 
-        <form className="copy-form">
-          <input
-            type="text"
-            placeholder="Paste here..."
-            value={data}
-            onChange={(e) => setData(e.target.value)}
-          />
-          <input
-            type="submit"
-            class="button"
-            value="Add"
-            onClick={() => onCopySubmit(data)}
-          />
-        </form>
+        <textarea
+          rows="5"
+          className="copy-text"
+          placeholder="Paste here..."
+          value={data}
+          onChange={(e) => setData(e.target.value)}
+        />
 
+        <button style={{margin: `1rem 0`}} onClick={() => onCopySubmit(data)}>Add</button>
         <button className="outline" onClick={onExit}>Cancel</button>
       </div>
     </div>
