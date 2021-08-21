@@ -4,17 +4,18 @@ function Timetable({ data }) {
   const daysOfWeek = ['M', 'T', 'W', 'Th', 'F', 'S']
 
   const colStyle = {
-    gridTemplateRows: `min-content repeat(${(data.end - data.start)*2}, 1fr)`
+    gridTemplateRows: `48px repeat(${(data.end - data.start) * 2}, 1fr)`
   }
 
   const timeStamps = [
-    <p key={`TIMETABLE-HEADING`} className="heading">Time</p>
-  ];
+    <p key={`TIMETABLE-HEADING`} className="heading" />
+  ]
 
   for (let i = data.start; i < data.end; i++) {
     timeStamps.push(
       <p
         key={`TIMETABLE-TIME_${i}`}
+        className="timestamp"
         style={{
           gridRowStart: (i - data.start)*2 + 2,
           gridRowEnd: (i - data.start)*2 + 3

@@ -70,30 +70,30 @@ function App() {
     end: 17,
     data: [
       [
-        {code: 'MATH 51.3', start: 8, end: 9, startTime: '0800', endTime: '0900'},
-        {code: 'ArtAp 10', start: 9, end: 10, startTime: '0900', endTime: '1000'},
-        {code: 'PHYS 23.11', start: 11, end: 12, startTime: '1100', endTime: '1200'},
+        {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
+        {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+        {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
       ], [
-        {code: 'PHYED 161', start: 9, end: 10, startTime: '0900', endTime: '1000'},
-        {code: 'CSCI 30', start: 11, end: 12.5, startTime: '1100', endTime: '1230'},
-        {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '1400', endTime: '1530'},
-        {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '1530', endTime: '1700'},
+        {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+        {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
+        {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
+        {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
       ], [
-        {code: 'MATH 51.3', start: 8, end: 9, startTime: '0800', endTime: '0900'},
-        {code: 'ArtAp 10', start: 9, end: 10, startTime: '0900', endTime: '1000'},
-        {code: 'PHYS 23.11', start: 11, end: 12, startTime: '1100', endTime: '1200'},
-        {code: 'PHYS 23.12', start: 13, end: 15, startTime: '1300', endTime: '1500'},
+        {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
+        {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+        {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
+        {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
       ], [
-        {code: 'PHYED 161', start: 9, end: 10, startTime: '0900', endTime: '1000'},
-        {code: 'CSCI 30', start: 11, end: 12.5, startTime: '1100', endTime: '1230'},
-        {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '1400', endTime: '1530'},
-        {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '1530', endTime: '1700'},
+        {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+        {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
+        {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
+        {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
       ], [
-        {code: 'MATH 51.3', start: 8, end: 9, startTime: '0800', endTime: '0900'},
-        {code: 'ArtAp 10', start: 9, end: 10, startTime: '0900', endTime: '1000'},
-        {code: 'PHYS 23.11', start: 11, end: 12, startTime: '1100', endTime: '1200'},
-        {code: 'PHYS 23.12', start: 13, end: 15, startTime: '1300', endTime: '1500'},
-      ],
+        {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
+        {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
+        {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
+        {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
+      ], []
     ]
   })
 
