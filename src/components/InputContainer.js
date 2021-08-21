@@ -3,7 +3,7 @@ import { useState } from 'react'
 import CopyModal from './CopyModal'
 import InputGroup from "./InputGroup"
 
-function InputContainer({ onManualSubmit, onCopySubmit }) {
+function InputContainer({ data, onManualSubmit, onCopySubmit }) {
   const [modalActive, setModalActive] = useState(false)
 
   const toggleModal = () => setModalActive(!modalActive)
@@ -20,7 +20,10 @@ function InputContainer({ onManualSubmit, onCopySubmit }) {
           ? <CopyModal onExit={toggleModal} onCopySubmit={_onCopySubmit} />
           : <></>
       }
-      <InputGroup onCopyClick={toggleModal} />
+
+      { data.map((g) =>
+        <InputGroup key={`INPUT-GROUP_${g.code}`} group={g} onCopyClick={toggleModal} />)
+      }
     </div>
   )
 }

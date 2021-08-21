@@ -8,7 +8,17 @@ import './css/Modal.css'
 import './css/Timetable.css'
 
 function App() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([
+    {
+      color: 'red',
+      code: 'MATH 51.3',
+      courses: [
+        {code: 'MATH 51.3', section: 'A', start: 8, end: 9, startTime: '0800', endTime: '0900', selected: true},
+        {code: 'MATH 51.3', section: 'B', start: 9, end: 10, startTime: '0900', endTime: '1000', selected: false},
+        {code: 'MATH 51.3', section: 'C', start: 10, end: 11, startTime: '1000', endTime: '1100', selected: false},
+      ]
+    }
+  ])
   const [groupedData, setGroupedData] = useState({
     start: 8,
     end: 17,
@@ -81,7 +91,7 @@ function App() {
 
   return (
     <div className="app">
-      <InputContainer onManualSubmit={onManualSubmit} onCopySubmit={onCopySubmit} />
+      <InputContainer data={data} onManualSubmit={onManualSubmit} onCopySubmit={onCopySubmit} />
       <Timetable data={groupedData} />
     </div>
   )

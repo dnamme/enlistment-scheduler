@@ -1,6 +1,6 @@
 import { FaClipboardList, FaPlus, FaTrashAlt } from 'react-icons/fa'
 
-function InputHeader({ onCopyClick }) {
+function InputHeader({ color, onCopyClick }) {
   const onAdd = () => {
   }
 
@@ -9,6 +9,12 @@ function InputHeader({ onCopyClick }) {
 
   return (
     <div className="input-header">
+      <div style={{
+        width: '24px',
+        height: '24px',
+        borderRadius: '24px',
+        backGroundColor: color
+      }} />
       <div className="square-button" onClick={onAdd}>
         <FaPlus /> Add Manually
       </div>
