@@ -1,0 +1,73 @@
+.timetable {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 32px;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  background-color: white;
+}
+
+.timetable p { margin: 0; }
+
+.timetable .heading {
+  text-align: center;
+  font-weight: 500;
+  align-self: center;
+}
+
+.timetable > * {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content repeat(20, 1fr);
+}
+
+.timestamp {
+  border-top: 1px solid black;
+  padding-left: 4px;
+  font-size: 0.75rem;
+}
+
+
+.course-block {
+  background-color: beige;
+  margin: 0;
+  text-align: center;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
+  align-items: center;
+}
+
+.course-block-bg {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  border-radius: 8px;
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+}
+
+.course-block > *:not(.course-block-bg) {
+  margin: 4px;
+  z-index: 1;
+  font-weight: 500;
+  grid-column: 1 / -1;
+  word-break: break-word;
+}
+
+.course-block > .course-code {
+  text-align: center;
+  grid-row: 1 / -1;
+}
+
+.course-block > .time { font-size: 0.563rem; }
+.course-block > .time.start { grid-row: 1 / 2; justify-self: flex-start; }
+.course-block > .time.end   { grid-row: 3 / 4; justify-self: flex-end; }
+
+@media screen and (max-width: 1023px) {
+  .timetable > * {
+    grid-template-rows: 48px repeat(20, 64px) !important;
+  }
+}

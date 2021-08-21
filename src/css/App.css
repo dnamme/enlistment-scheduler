@@ -1,0 +1,74 @@
+.app {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 512px;
+  grid-template-areas: "input table";
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888888;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+header {
+  padding: 12px 24px;
+  background-color: #3F51B5;
+}
+
+header > h3 {
+  margin: 0;
+  color: white;
+  word-break: break-word;
+}
+
+button,
+.button {
+  color: white;
+  text-align: center;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+button > p,
+.button > p {
+  margin: 0 0 0 16px;
+}
+
+.color-indicator {
+  display: flex;
+  flex-flow: row nowrap;
+  background-color: #363636;
+  border-radius: 16px;
+  padding: 8px 16px;
+}
+
+.color-indicator > p {
+  color: white;
+  margin: 0 0 0 12px;
+}
+
+@media screen and (max-width: 1023px) {
+  .app {
+    height: revert;
+    display: block;
+  }
+
+  .input-container {
+    height: auto;
+  }
+
+  .timetable {
+    height: auto;
+  }
+}
