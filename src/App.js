@@ -109,7 +109,58 @@ function App() {
 
   useEffect(() => {
     // rebuild timetable
-  }, [data])
+    let nstart = 24
+    let nend = 0
+    let ndata = [[], [], [], [], []]
+
+    const daysOfWeek = ['M', 'T', 'W', 'TH', 'F', 'S']
+
+    // adding pre-enlisted
+    preEnlistedData.forEach((row) => {
+      let schedLoc = row.schedLoc
+      let rawDays = schedLoc.split('/')[0].split(' ')[0]
+      let days = []
+      for (let i = 0; i < 6; i++) {
+        if (rawDays.includes(daysOfWeek[i]) || rawDays.includes('D')) days[i] = true
+        else days[i] = false
+      }
+
+      let rstart = parseInt(schedLoc.split('/')[0].split(' ')[1].split('-')[0]) // in xxxx form
+      let rend = parseInt(schedLoc.split('/')[0].split(' ')[1].split('-')[1]) // in xxxx form
+      
+      let rstart_hr = Math.floor(rstart/100) + (rstart%100)/60
+      let rend_hr = Math.floor(rend/100) + (rend%100)/60
+
+      if (rstart_hr < nstart) nstart = rstart_hr
+      if (rend_hr > nend) nend = rend_hr
+
+      let st_hr = Math.floor(rstart/100)
+      let ed_hr = Math.floor(rend/100)
+
+      for (let i = 0; i < 6; i++) {
+        if (days[i]) {
+          ndata[i].push({
+            color: row.color, // random
+            code: row.code,
+            start: rstart_hr, // in x.x form
+            end: rend_hr, // in x.x form
+            startTime: `${st_hr > 12 ? st_hr-12 : st_hr}:${Math.floor(rstart%100).toString().padStart(2, '0')} ${rstart < 1200 ? 'AM' : 'PM'}`,
+            endTime: `${ed_hr > 12 ? ed_hr-12 : ed_hr}:${Math.floor(rend%100).toString().padStart(2, '0')} ${rend < 1200 ? 'AM' : 'PM'}`
+          })
+        }
+      }
+    })
+
+    // adding selected input
+    
+
+    // change state
+    setGroupedData({
+      start: nstart,
+      end: nend,
+      data: ndata
+    })
+  }, [preEnlistedData, data])
 
 
   const selectClassFromGroup = (kc, code, section) => {
@@ -142,7 +193,7 @@ function App() {
 
         if (cols.length === 14) {
           let rawDays = cols[4].split(' ')[0].toUpperCase()
-          let daysOfWeek = ['M', 'T', 'W', 'TH', 'F', 'S']
+          const daysOfWeek = ['M', 'T', 'W', 'TH', 'F', 'S']
           let days = []
           for (let i = 0; i < 6; i++) {
             if (rawDays.includes(daysOfWeek[i]) || rawDays.includes('D')) days[i] = true
@@ -199,6 +250,7 @@ function App() {
             schedLoc: cols[5], // T-TH 1400-1600 / TBA
             credit: cols[6], // not needed
             remarks: cols[7], // not needed
+            color: randomColor(), // random
           })
         }
       })
