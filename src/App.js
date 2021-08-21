@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import InputContainer from './components/InputContainer'
+import InputHeader from './components/InputHeader'
+import InputRow from './components/InputRow'
+
 import Timetable from './components/Timetable'
 import './css/App.css'
 import './css/Input.css'
@@ -10,7 +12,7 @@ import './css/Timetable.css'
 function App() {
   const [data, setData] = useState([
     {
-      color: 'red',
+      color: '#3F51B5',
       code: 'CSCI 30',
       courses: [
         {
@@ -135,9 +137,39 @@ function App() {
   }
 
 
+  const [manualAddCode, setManualAddCode] = useState(null)
+  const [copyModalCode, setCopyModalCode] = useState(null)
+
+
   return (
     <div className="app">
-      <InputContainer data={data} onManualSubmit={onManualSubmit} onCopySubmit={onCopySubmit} />
+      <div>
+        {/* modals */}
+
+        <header>
+          <h3>Enlistment Scheduler</h3>
+        </header>
+        {/* <InputContainer data={data} onManualSubmit={onManualSubmit} onCopySubmit={onCopySubmit} /> */}
+
+        {/* pre-enlisted header */}
+        {/* pre-enlisted rows or empty text */}
+
+        {/* build headers and rows */}
+        {data.map((group) => <>
+          <InputHeader
+            key={`INPUT-HEADER_${group.code}`}
+            color={group.color}
+            onAddClick={() => {}}
+            onCopyClick={() => {}}
+            onDeleteClick={() => {}} />
+
+            {group.courses.map((row) =>
+              <InputRow
+                row={row}
+                onSelect={() => {}}
+                onDelete={() => {}} />)}
+        </>)}
+      </div>
       <Timetable data={groupedData} />
     </div>
   )

@@ -8,8 +8,9 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-end;
-  background-color: darkslateblue;
   align-items: center;
+  background-color: #3F51B5;
+  padding: 4px 16px;
 }
 
 .input-row {

@@ -1,31 +1,27 @@
 import { FaClipboardList, FaPlus, FaTrashAlt } from 'react-icons/fa'
+import IconButton from './IconButton'
 
-function InputHeader({ color, onCopyClick }) {
-  const onAdd = () => {
-  }
-
-  const onDelete = () => {
-  }
+function InputHeader({ color, onAddClick, onCopyClick, onDeleteClick }) {
+  const mrgLeft = { margin: '4px 8px' }
 
   return (
-    <div className="input-header">
-      <div style={{
-        width: '24px',
-        height: '24px',
-        boxSizing: 'border-box',
-        borderRadius: '24px',
-        backgroundColor: color,
-        border: '2px solid black'
-      }} />
-      <div className="square-button" onClick={onAdd}>
-        <FaPlus /> Add Manually
+    <div className="input-header" style={{ backgroundColor: color }}>
+      {/* color indicator */}
+      <div className="color-indicator" style={{ marginLeft: '8px', marginRight: 'auto' }}>
+        <div style={{
+          backgroundColor: color,
+          width: '24px',
+          height: '24px',
+          clipPath: 'circle(50%)'
+        }} />
+
+        <p style={{}}>{color}</p>
       </div>
-      <div className="square-button" onClick={onCopyClick}>
-        <FaClipboardList /> Paste from AISIS
-      </div>
-      <div className="square-button" onClick={onDelete}>
-        <FaTrashAlt /> Delete Group
-      </div>
+
+      {/* buttons */}
+      <IconButton cStyle={mrgLeft} icon={<FaPlus />} text="Manual Add" onClick={onAddClick} />
+      <IconButton cStyle={mrgLeft} icon={<FaClipboardList />} text="Paste from AISIS" onClick={onCopyClick} />
+      <IconButton cStyle={mrgLeft} icon={<FaTrashAlt />} text="Delete Group" onClick={onDeleteClick} />
     </div>
   )
 }
