@@ -6,6 +6,20 @@
   grid-template-areas: "input table";
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888888;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
 header {
   padding: 12px 24px;
   background-color: #3F51B5;
@@ -19,7 +33,6 @@ header > h3 {
 
 button,
 .button {
-  background: darkslateblue;
   color: white;
   text-align: center;
   padding: 8px 16px;

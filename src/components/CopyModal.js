@@ -1,12 +1,25 @@
 import { useState } from 'react'
 
-function CopyModal({ index, onExit, onCopySubmit }) {
+import FlatButton from './FlatButton'
+
+function CopyModal({ keyCode, onAddClick, onExitClick }) {
   const [data, setData] = useState('')
 
   return (
     <div className="modal">
       <div className="modal-content">
-        <h4>Go to Class Schedule on AISIS and paste rows from the tables below</h4>
+        <h5 style={{ margin: 0, alignSelf: 'flex-start' }}>How to add classes from AISIS:</h5>
+
+        <ol style={{ paddingLeft: '24px', alignSelf: 'flex-start' }}>
+          <li>Go to AISIS Online and navigate to Class Schedule</li>
+          <li>Click the Display Class Schedule button for any department, course, or category number</li>
+          <li>Copy the entire row (or entire rows for multiple courses) from the table on AISIS
+            <ul>
+              <li>Don't worry if there are extra spaces! The tool will work as long as you don't type or change anything important!</li>
+            </ul>
+          </li>
+          <li>Paste the text in the textbox below</li>
+        </ol>
 
         <textarea
           rows="5"
@@ -16,8 +29,8 @@ function CopyModal({ index, onExit, onCopySubmit }) {
           onChange={(e) => setData(e.target.value)}
         />
 
-        <button style={{margin: `1rem 0`}} onClick={() => onCopySubmit(data)}>Add</button>
-        <button className="outline" onClick={onExit}>Cancel</button>
+        <FlatButton cStyle={{ width: '128px', margin: '32px 0 16px 0' }} text="Add" onClick={() => onAddClick(keyCode, data)} />
+        <FlatButton cStyle={{ width: '128px' }} text="Cancel" isOutlined={true} onClick={onExitClick} />
       </div>
     </div>
   )

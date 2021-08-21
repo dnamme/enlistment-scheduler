@@ -1,18 +1,19 @@
-function IconButton({ cStyle = {}, icon, bgColor = 'white', color = 'black', text }) {
+function IconButton({ cStyle = {}, icon, onClick = () => {}, bgColor = 'white', color = 'black', text }) {
   return (
     <button
       style={{
-        ...cStyle,
         display: 'flex',
         flexFlow: 'row nowrap',
         alignItems: 'center',
         border: 'none',
         borderRadius: '8px',
         backgroundColor: bgColor,
-        color: color
-      }}>
+        color: color,
+        ...cStyle
+      }}
+      onClick={onClick} >
         {icon}
-        <p>{text}</p>
+        <p style={{ fontWeight: 600 }}>{text}</p>
       </button>
   )
 }
