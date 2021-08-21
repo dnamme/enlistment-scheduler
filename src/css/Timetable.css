@@ -11,7 +11,8 @@
 
 .timetable .heading {
   text-align: center;
-  font-weight: medium;
+  font-weight: 500;
+  align-self: center;
 }
 
 .timetable > * {
@@ -57,8 +58,8 @@
 .course-block > .time.start { grid-row: 1 / 2; justify-self: flex-start; }
 .course-block > .time.end   { grid-row: 3 / 4; justify-self: flex-end; }
 
-@media screen and (max-aspect-ratio: 1/1) {
+@media screen and (max-width: 1023px) {
   .timetable > * {
-    grid-template-rows: min-content repeat(20, 64px);
+    grid-template-rows: 48px repeat(20, 64px) !important;
   }
 }

@@ -6,6 +6,7 @@ import { randomColor } from 'randomcolor'
 import IconButton from './components/IconButton'
 import InputHeader from './components/InputHeader'
 import InputRow from './components/InputRow'
+import PreEnlistedRow from './components/PreEnlistedRow'
 import Timetable from './components/Timetable'
 
 import CopyModal from './components/CopyModal'
@@ -135,52 +136,77 @@ function App() {
     let raw_rows = d.split('\n')
     let new_data = []
 
-    raw_rows.forEach((row) => {
-      let cols = row.split('\t')
+    if (kc !== -1) {
+      raw_rows.forEach((row) => {
+        let cols = row.split('\t')
 
-      if (cols.length === 14) {
-        let rawDays = cols[4].split(' ')[0].toUpperCase()
-        let daysOfWeek = ['M', 'T', 'W', 'TH', 'F', 'S']
-        let days = []
-        for (let i = 0; i < 6; i++) {
-          if (rawDays.includes(daysOfWeek[i])) days[i] = true
-          else days[i] = false
+        if (cols.length === 14) {
+          let rawDays = cols[4].split(' ')[0].toUpperCase()
+          let daysOfWeek = ['M', 'T', 'W', 'TH', 'F', 'S']
+          let days = []
+          for (let i = 0; i < 6; i++) {
+            if (rawDays.includes(daysOfWeek[i]) || rawDays.includes('D')) days[i] = true
+            else days[i] = false
+          }
+
+          let st = parseInt(cols[4].split(' ')[1].split('-')[0])
+          let en = parseInt(cols[4].split(' ')[1].split('-')[1])
+
+          new_data.push({
+            code: cols[0],
+            section: cols[1],
+            name: cols[2],
+            units: cols[3],
+            time: cols[4], // raw string
+            room: cols[5],
+            instructor: cols[6],
+            max_slots: cols[7],
+            lang: cols[8],
+            level: cols[9], // not needed
+            free_slots: cols[10],
+            remarks: cols[11],
+            s: cols[12], // not needed
+            p: cols[13], // not needed
+            selected: false, // default
+            _days: days,
+            _start: Math.floor(st/100) + (st%100)/100, // in x.x (hr) form
+            _end: Math.floor(en/100) + (st%100)/100, // in x.x (hr) form
+          })
         }
+      })
 
-        let st = parseInt(cols[4].split(' ')[1].split('-')[0])
-        let en = parseInt(cols[4].split(' ')[1].split('-')[1])
+      let nrd = data
+      nrd.forEach((group) => {
+        if (group.keyCode === kc) {
+          group.courses.push(...new_data)
+        }
+      })
 
-        new_data.push({
-          code: cols[0],
-          section: cols[1],
-          name: cols[2],
-          units: cols[3],
-          time: cols[4], // raw string
-          room: cols[5],
-          instructor: cols[6],
-          max_slots: cols[7],
-          lang: cols[8],
-          level: cols[9], // not needed
-          free_slots: cols[10],
-          remarks: cols[11],
-          s: cols[12], // not needed
-          p: cols[13], // not needed
-          selected: false, // default
-          _days: days,
-          _start: Math.floor(st/100) + (st%100)/100, // in x.x (hr) form
-          _end: Math.floor(en/100) + (st%100)/100, // in x.x (hr) form
-        })
-      }
-    })
+      setData(nrd)
+    } else {
+      let nrped = preEnlistedData
 
-    let nrd = data
-    nrd.forEach((group) => {
-      if (group.keyCode === kc) {
-        group.courses.push(...new_data)
-      }
-    })
+      raw_rows.forEach((row) => {
+        let cols = row.split('\t')
 
-    setData(nrd)
+        if (cols.length === 8) {
+          new_data.push({
+            code: cols[0],
+            units: cols[1], // not needed
+            title: cols[2],
+            section: cols[3],
+            instructor: cols[4],
+            schedLoc: cols[5], // T-TH 1400-1600 / TBA
+            credit: cols[6], // not needed
+            remarks: cols[7], // not needed
+          })
+        }
+      })
+
+      setPreEnlistedData([...nrped, ...new_data])
+
+      console.log(preEnlistedData)
+    }
   }
 
 
@@ -189,21 +215,32 @@ function App() {
 
   const deleteGroup = (kc) => setData(data.filter((group) => group.keyCode !== kc))
   const deleteRow = (kc, code, section) => {
-    let nrd = data
+    if (kc !== -1) {
+      let nrd = data
 
-    nrd.forEach((group) => {
-      if (group.keyCode === kc) {
-        for (let i = group.courses.length - 1; i >= 0; i--) {
-          if (group.courses[i].code === code && group.courses[i].section === section)
-            group.courses.splice(i, 1)
+      nrd.forEach((group) => {
+        if (group.keyCode === kc) {
+          for (let i = group.courses.length - 1; i >= 0; i--) {
+            if (group.courses[i].code === code && group.courses[i].section === section)
+              group.courses.splice(i, 1)
+          }
         }
-      }
-    })
+      })
 
-    setData([...nrd])
+      setData([...nrd])
+    } else {
+      let nrped = preEnlistedData
+
+      for (let i = nrped.length - 1; i >= 0; i--) {
+        if (nrped[i].code === code && nrped[i].section)
+          nrped.splice(i, 1)
+      }
+
+      setPreEnlistedData([...nrped])
+    }
   }
 
-  
+
   const emptyTextStyle = {
     textAlign: 'center',
     margin: '16px auto',
@@ -235,17 +272,16 @@ function App() {
         {/* pre-enlisted header */}
         <InputHeader
           onAddClick={() => {}}
-          onCopyClick={() => {}}
+          onCopyClick={() => setCopyModalCode(-1)}
           isPreEnlisted={true} />
         {/* pre-enlisted rows or empty text */}
         {
           preEnlistedData.length > 0
             ? preEnlistedData.map((row) =>
-                <InputRow
+                <PreEnlistedRow
                   key={`PRE-ENLISTED_${row.code}_${row.section}`}
                   row={row}
-                  onSelect={() => {}}
-                  onDelete={() => {}} /> 
+                  onDelete={() => deleteRow(-1, row.code, row.section)} />
               )
             : <p style={emptyTextStyle}>
                 Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add.
@@ -323,6 +359,12 @@ CSCI 30	A	DATA STRUCTURES AND ALGORITHMS	3	T-TH 0930-1100	TBA	GUADALUPE, Brian C
 CSCI 31	B	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	aaa	N	N
 CSCI 32	C	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	PANGAN, Zachary	35	ENG	U	8	aaa	N	N
 
-
+CSCI 22	3	INTRODUCTION TO PROGRAMMING II	B	SUGAY, JESSICA O.	T-TH 1400-1600 / TBA	C	-
+ENLIT 12	3	LITERATURE: GLOBAL VOICES AND ENCOUNTERS	P-Q4	SUAREZ, ELINETH ELIZABETH L.	M-W-F 1400-1500 / TBA	C	-
+FILI 11	3	MALAYUNING KOMUNIKASYON	F-Q3	LIM, MARK BENEDICT F.	T-TH 1100-1230 / TBA	C	-
+HISTO 11	3	RIZAL AND THE EMERGENCE OF THE PHILIPPINE NATION	GG-Q4	CLAVERIA, BIANCA ANGELIEN A.	T-TH 0930-1100 / TBA	C	-
+MATH 30.23	3	APPLIED CALCULUS FOR SCIENCE AND ENGINEERING I	C	MALLARI, JUAN CARLO F.	T-TH 0800-0930 / TBA	C	-
+SocSc 12	3	UNDERSTANDING THE SELF	PSY-A-Q3	KEH, ALYDA YASMIN A.	M-W-F 0800-0900 / TBA	C	-
+THEO 11	3	FAITH, SPIRITUALITY, AND THE CHURCH	T-Q3	ROSAL, LESLEY ANNE A.	M-W-F 1100-1200 / TBA	C	-
 
 */
