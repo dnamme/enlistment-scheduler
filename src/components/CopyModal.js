@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
-function CopyModal({ index, onExit, onCopySubmit }) {
+import FlatButton from './FlatButton'
+
+function CopyModal({ keyCode, onAddClick, onExitClick }) {
   const [data, setData] = useState('')
 
   return (
@@ -16,8 +18,8 @@ function CopyModal({ index, onExit, onCopySubmit }) {
           onChange={(e) => setData(e.target.value)}
         />
 
-        <button style={{margin: `1rem 0`}} onClick={() => onCopySubmit(data)}>Add</button>
-        <button className="outline" onClick={onExit}>Cancel</button>
+        <FlatButton cStyle={{ width: '128px' }} text="Add" onClick={() => onAddClick(keyCode, data)} />
+        <FlatButton cStyle={{ width: '128px' }} text="Cancel" isOutlined={true} onClick={onExitClick} />
       </div>
     </div>
   )

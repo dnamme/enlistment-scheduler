@@ -2,18 +2,21 @@ import { useEffect, useState } from 'react'
 
 import InputHeader from './components/InputHeader'
 import InputRow from './components/InputRow'
-
 import Timetable from './components/Timetable'
+
+import CopyModal from './components/CopyModal'
+
 import './css/App.css'
 import './css/Input.css'
 import './css/Modal.css'
 import './css/Timetable.css'
 
 function App() {
+  const [preEnlistedData, setPreEnlistedData] = useState([])
   const [data, setData] = useState([
     {
       color: '#3F51B5',
-      code: 'CSCI 30',
+      keyCode: 'CSCI 30',
       courses: [
         {
           "code": "CSCI 30",
@@ -104,9 +107,11 @@ function App() {
   }, [data])
 
 
-  const onManualSubmit = (d) => {}
+  const onManualAddSubmit = (d) => {}
 
-  const onCopySubmit = (d) => {
+  const onCopySubmit = (kc, d) => {
+    setCopyModalCode(null)
+
     let raw_rows = d.split('\n')
     let new_data = []
 
@@ -133,42 +138,90 @@ function App() {
       }
     })
 
-    console.log(new_data)
+    let nrd = data
+    nrd.forEach((group) => {
+      if (group.keyCode == kc) {
+        console.log('found')
+        group.courses.push(...new_data)
+      }
+    })
+
+    setData(nrd)
   }
 
 
   const [manualAddCode, setManualAddCode] = useState(null)
   const [copyModalCode, setCopyModalCode] = useState(null)
 
+  const deleteGroup = (kc) => setData(data.filter((group) => group.keyCode != kc))
+
+  
+  const emptyTextStyle = {
+    textAlign: 'center',
+    margin: '16px auto',
+    maxWidth: '768px'
+  }
+
 
   return (
     <div className="app">
       <div>
         {/* modals */}
+        {
+          // manualAddCode != null && <AddModal
+          //   keyCode={manualAddCode}
+          //   onAddClick={() => {}}
+          //   onExitClick={() => {}} />
+        }
+        {
+          copyModalCode != null && <CopyModal
+            keyCode={copyModalCode}
+            onAddClick={onCopySubmit}
+            onExitClick={() => setCopyModalCode(null)} />
+        }
 
         <header>
           <h3>Enlistment Scheduler</h3>
         </header>
-        {/* <InputContainer data={data} onManualSubmit={onManualSubmit} onCopySubmit={onCopySubmit} /> */}
 
         {/* pre-enlisted header */}
+        <InputHeader
+          onAddClick={() => {}}
+          onCopyClick={() => {}}
+          isPreEnlisted={true} />
         {/* pre-enlisted rows or empty text */}
+        {
+          preEnlistedData.length > 0
+            ? preEnlistedData.map((row) => {})
+            : <p style={emptyTextStyle}>
+                Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add.
+              </p>
+        }
 
         {/* build headers and rows */}
-        {data.map((group) => <>
-          <InputHeader
-            key={`INPUT-HEADER_${group.code}`}
-            color={group.color}
-            onAddClick={() => {}}
-            onCopyClick={() => {}}
-            onDeleteClick={() => {}} />
+        {data.map((group) =>
+          <div key={`INPUT-GROUP_${group.keyCode}`}>
+            <InputHeader
+              key={`INPUT-HEADER_${group.code}`}
+              color={group.color}
+              onAddClick={() => {}}
+              onCopyClick={() => setCopyModalCode(group.keyCode)}
+              onDeleteClick={() => deleteGroup(group.keyCode)} />
 
-            {group.courses.map((row) =>
-              <InputRow
-                row={row}
-                onSelect={() => {}}
-                onDelete={() => {}} />)}
-        </>)}
+            {
+              group.courses.length > 0
+                ? group.courses.map((row) =>
+                  <InputRow
+                    key={`INPUT-ROW_${group.keyCode}_${row.code}_${row.section}`}
+                    row={row}
+                    onSelect={() => {}}
+                    onDelete={() => {}} />)
+                : <p style={emptyTextStyle}>
+                    Click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add any classes!
+                  </p>
+            }
+          </div>
+        )}
       </div>
       <Timetable data={groupedData} />
     </div>

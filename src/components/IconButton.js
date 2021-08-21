@@ -1,4 +1,4 @@
-function IconButton({ cStyle = {}, icon, bgColor = 'white', color = 'black', text }) {
+function IconButton({ cStyle = {}, icon, onClick = () => {}, bgColor = 'white', color = 'black', text }) {
   return (
     <button
       style={{
@@ -10,7 +10,8 @@ function IconButton({ cStyle = {}, icon, bgColor = 'white', color = 'black', tex
         borderRadius: '8px',
         backgroundColor: bgColor,
         color: color
-      }}>
+      }}
+      onClick={onClick} >
         {icon}
         <p>{text}</p>
       </button>
