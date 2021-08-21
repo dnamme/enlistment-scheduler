@@ -103,6 +103,7 @@ function App() {
   })
 
   useEffect(() => {
+    // rebuild timetable?
     console.log('data changed!')
   }, [data])
 
@@ -140,7 +141,7 @@ function App() {
 
     let nrd = data
     nrd.forEach((group) => {
-      if (group.keyCode == kc) {
+      if (group.keyCode === kc) {
         console.log('found')
         group.courses.push(...new_data)
       }
@@ -153,7 +154,21 @@ function App() {
   const [manualAddCode, setManualAddCode] = useState(null)
   const [copyModalCode, setCopyModalCode] = useState(null)
 
-  const deleteGroup = (kc) => setData(data.filter((group) => group.keyCode != kc))
+  const deleteGroup = (kc) => setData(data.filter((group) => group.keyCode !== kc))
+  const deleteRow = (kc, code, section) => {
+    let nrd = data
+
+    nrd.forEach((group) => {
+      if (group.keyCode === kc) {
+        for (let i = group.courses.length - 1; i >= 0; i--) {
+          if (group.courses[i].code === code && group.courses[i].section === section)
+            group.courses.splice(i, 1)
+        }
+      }
+    })
+
+    setData([...nrd])
+  }
 
   
   const emptyTextStyle = {
@@ -192,7 +207,13 @@ function App() {
         {/* pre-enlisted rows or empty text */}
         {
           preEnlistedData.length > 0
-            ? preEnlistedData.map((row) => {})
+            ? preEnlistedData.map((row) =>
+                <InputRow
+                  key={`PRE-ENLISTED_${row.code}_${row.section}`}
+                  row={row}
+                  onSelect={() => {}}
+                  onDelete={() => {}} /> 
+              )
             : <p style={emptyTextStyle}>
                 Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add.
               </p>
@@ -215,7 +236,7 @@ function App() {
                     key={`INPUT-ROW_${group.keyCode}_${row.code}_${row.section}`}
                     row={row}
                     onSelect={() => {}}
-                    onDelete={() => {}} />)
+                    onDelete={() => deleteRow(group.keyCode, row.code, row.section)} />)
                 : <p style={emptyTextStyle}>
                     Click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add any classes!
                   </p>

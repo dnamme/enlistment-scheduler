@@ -1,3 +1,5 @@
+import { FaTimes } from 'react-icons/fa'
+
 function InputRow({ row, onSelect, onDelete }) {
   return (
     <div key={`GROUP_${row.code}_${row.section}`} className={`input-row ${row.free_slots > 0 ? '' : 'disabled'}`}>
@@ -9,6 +11,9 @@ function InputRow({ row, onSelect, onDelete }) {
       <p>{row.room}</p>
       <p>{row.instructor}</p>
       <p>{`${row.free_slots}/${row.max_slots} SLOTS`}</p>
+      <FaTimes
+        style={{ cursor: 'pointer', marginLeft: 'auto' }}
+        onClick={onDelete} />
     </div>
   )
 }
