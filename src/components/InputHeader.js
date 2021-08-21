@@ -27,7 +27,7 @@ function InputHeader({ color, onAddClick, onCopyClick, onDeleteClick, isPreEnlis
       }
 
       {/* buttons */}
-      <IconButton cStyle={mrgLeft} icon={<FaPlus />} text="Manual Add" onClick={onAddClick} />
+      {/* <IconButton cStyle={mrgLeft} icon={<FaPlus />} text="Manual Add" onClick={onAddClick} /> */}
       <IconButton cStyle={mrgLeft} icon={<FaClipboardList />} text="Paste from AISIS" onClick={onCopyClick} />
       { !isPreEnlisted && <IconButton cStyle={mrgLeft} icon={<FaTrashAlt />} text="Delete Group" onClick={onDeleteClick} /> }
     </div>
