@@ -11,7 +11,9 @@ function Timetable({ data }) {
     <p key={`TIMETABLE-HEADING`} className="heading" />
   ]
 
-  for (let i = data.start; i < data.end; i++) {
+  for (let i = data.start; i < data.end; i += 0.5) {
+    if (!Number.isInteger(i)) continue
+    
     timeStamps.push(
       <p
         key={`TIMETABLE-TIME_${i}`}

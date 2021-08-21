@@ -181,8 +181,8 @@ function App() {
                 code: group.courses[i].code,
                 start: rstart_hr, // in x.x form
                 end: rend_hr, // in x.x form
-                startTime: `${st_hr > 12 ? st_hr-12 : st_hr}:${(intStart%100).toString().padStart(2, '0')} ${rstart_hr < 1200 ? 'AM' : 'PM'}`,
-                endTime: `${ed_hr > 12 ? ed_hr-12 : ed_hr}:${(intEnd%100).toString().padStart(2, '0')} ${rend_hr < 1200 ? 'AM' : 'PM'}`
+                startTime: `${st_hr > 12 ? st_hr-12 : st_hr}:${(intStart%100).toString().padStart(2, '0')} ${rstart_hr < 12 ? 'AM' : 'PM'}`,
+                endTime: `${ed_hr > 12 ? ed_hr-12 : ed_hr}:${(intEnd%100).toString().padStart(2, '0')} ${rend_hr < 12 ? 'AM' : 'PM'}`
               })
             }
           }
