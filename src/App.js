@@ -11,11 +11,57 @@ function App() {
   const [data, setData] = useState([
     {
       color: 'red',
-      code: 'MATH 51.3',
+      code: 'CSCI 30',
       courses: [
-        {code: 'MATH 51.3', section: 'A', start: 8, end: 9, startTime: '0800', endTime: '0900', selected: true},
-        {code: 'MATH 51.3', section: 'B', start: 9, end: 10, startTime: '0900', endTime: '1000', selected: false},
-        {code: 'MATH 51.3', section: 'C', start: 10, end: 11, startTime: '1000', endTime: '1100', selected: false},
+        {
+          "code": "CSCI 30",
+          "section": "A",
+          "name": "DATA STRUCTURES AND ALGORITHMS",
+          "units": "3",
+          "time": "T-TH 0930-1100",
+          "room": "TBA",
+          "instructor": "GUADALUPE, Brian Christopher",
+          "max_slots": "35",
+          "lang": "ENG",
+          "level": "U",
+          "free_slots": "0",
+          "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
+          "s": "N",
+          "p": "N",
+          selected: false
+        }, {
+          "code": "CSCI 30",
+          "section": "B",
+          "name": "DATA STRUCTURES AND ALGORITHMS",
+          "units": "3",
+          "time": "T-TH 1100-1230",
+          "room": "TBA",
+          "instructor": "GUADALUPE, Brian Christopher",
+          "max_slots": "35",
+          "lang": "ENG",
+          "level": "U",
+          "free_slots": "0",
+          "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
+          "s": "N",
+          "p": "N",
+          selected: true
+        }, {
+          "code": "CSCI 30",
+          "section": "C",
+          "name": "DATA STRUCTURES AND ALGORITHMS",
+          "units": "3",
+          "time": "T-TH 1100-1230",
+          "room": "TBA",
+          "instructor": "PANGAN, Zachary",
+          "max_slots": "35",
+          "lang": "ENG",
+          "level": "U",
+          "free_slots": "8",
+          "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
+          "s": "N",
+          "p": "N",
+          selected: false
+        }
       ]
     }
   ])
