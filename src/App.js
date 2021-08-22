@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
-import { FaPlus } from 'react-icons/fa'
 import { v4 as uuidv4 } from 'uuid'
 import { randomColor } from 'randomcolor'
 
-import IconButton from './components/IconButton'
 import InputHeader from './components/InputHeader'
 import InputRow from './components/InputRow'
 import PreEnlistedRow from './components/PreEnlistedRow'
@@ -18,7 +16,13 @@ import './css/Timetable.css'
 
 function App() {
   const [preEnlistedData, setPreEnlistedData] = useState([])
-  const [data, setData] = useState([])
+  const [data, setData] = useState([
+    {
+      color: randomColor(),
+      keyCode: uuidv4(),
+      courses: []
+    }
+  ])
   const [groupedData, setGroupedData] = useState({
     start: 8,
     end: 17,
@@ -189,6 +193,15 @@ function App() {
         }
       })
 
+      // create new group if last has data
+      if (nrd.length > 0 && nrd[nrd.length-1].courses.length > 0) {
+        nrd.push({
+          color: randomColor(),
+          keyCode: uuidv4(),
+          courses: []
+        })
+      }
+
       setData(nrd)
     } else {
       let nrped = preEnlistedData
@@ -249,10 +262,11 @@ function App() {
   }
 
 
+  const emptyTextWrapperStyle = { padding: '32px' }
   const emptyTextStyle = {
     textAlign: 'center',
-    margin: '16px auto',
-    maxWidth: '768px'
+    margin: '0 auto',
+    maxWidth: '512px'
   }
 
 
@@ -291,9 +305,11 @@ function App() {
                   row={row}
                   onDelete={() => deleteRow(-1, row.code, row.section)} />
               )
-            : <p style={emptyTextStyle}>
-                Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add.
-              </p>
+            : <div style={emptyTextWrapperStyle}>
+                <p style={emptyTextStyle}>
+                  Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Paste from AISIS</strong> button to add.
+                </p>
+              </div>
         }
 
         {/* build headers and rows */}
@@ -304,7 +320,8 @@ function App() {
               color={group.color}
               onAddClick={() => {}}
               onCopyClick={() => setCopyModalCode(group.keyCode)}
-              onDeleteClick={() => deleteGroup(group.keyCode)} />
+              onDeleteClick={() => deleteGroup(group.keyCode)}
+              showDelete={data.length > 1}/>
 
             {
               group.courses.length > 0
@@ -314,39 +331,17 @@ function App() {
                     row={row}
                     onSelect={() => selectClassFromGroup(group.keyCode, row.code, row.section)}
                     onDelete={() => deleteRow(group.keyCode, row.code, row.section)} />)
-                : <p style={emptyTextStyle}>
-                    Click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add any classes!
-                  </p>
+                : <div style={emptyTextWrapperStyle}>
+                    <p style={emptyTextStyle}>
+                      Click the <strong>Paste from AISIS</strong> button to add your classes!
+                    </p>
+                  </div>
             }
           </div>
         )}
       </div>
 
       <Timetable data={groupedData} />
-
-      {/* fixed, floating button */}
-      <IconButton
-        cStyle={{
-          position: 'fixed',
-          bottom: 0,
-          left: '40px',
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-          border: '1px solid gray'
-        }}
-        icon={<FaPlus />}
-        onClick={() => {
-          setData([
-            ...data,
-            {
-              color: randomColor(),
-              keyCode: uuidv4(),
-              courses: []
-            }
-          ])
-        }}
-        bgColor="white"
-        text="Add Group" />
 
       {/* footer */}
       <footer>
