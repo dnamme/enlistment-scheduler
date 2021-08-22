@@ -347,6 +347,11 @@ function App() {
         }}
         bgColor="white"
         text="Add Group" />
+
+      {/* footer */}
+      <footer>
+        <p>&copy; Emman Evangelista &bull; v.1.0.2-build</p>
+      </footer>
     </div>
   )
 }
