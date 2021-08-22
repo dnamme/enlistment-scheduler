@@ -10,7 +10,7 @@ function InputHeader({ color, onAddClick, onCopyClick, onDeleteClick, showDelete
   }
 
   return (
-    <div className="input-header" style={{ backgroundColor: color }}>
+    <div className="input-header" style={{ backgroundColor: color, position: 'sticky', top: 0 }}>
       {/* color indicator / pre-enlisted heading */}
       {
         isPreEnlisted
