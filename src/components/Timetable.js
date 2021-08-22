@@ -34,7 +34,7 @@ function Timetable({ data }) {
             <p className="heading">{daysOfWeek[index]}</p>
 
             { col.map((course) =>
-              <CourseBlock key={`TIMETABLE-BLOCK_${daysOfWeek[index]}_${course.code}`} course={course} start={data.start} />)
+              <CourseBlock key={`TIMETABLE-BLOCK_${daysOfWeek[index]}_${course.code}_${course.uuid}`} course={course} start={data.start} />)
             }
           </div>
         )
