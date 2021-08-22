@@ -2,22 +2,11 @@
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 512px;
-  grid-template-areas: "input table";
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background: #888888;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #555555;
+  grid-template-columns: 1fr 400px;
+  grid-template-rows: 1fr min-content;
+  grid-template-areas:
+    "input table"
+    "footer footer";
 }
 
 header {
@@ -29,6 +18,20 @@ header > h3 {
   margin: 0;
   color: white;
   word-break: break-word;
+}
+
+footer {
+  grid-area: footer;
+  z-index: 2;
+  background-color: black;
+  color: white;
+  padding: 4px 16px;
+  text-align: center;
+}
+
+footer > p {
+  margin: 0;
+  font-size: 0.75rem;
 }
 
 button,
@@ -58,10 +61,27 @@ button > p,
   margin: 0 0 0 12px;
 }
 
+@media screen and (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888888;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+  }
+}
+
 @media screen and (max-width: 1023px) {
   .app {
     height: revert;
     display: block;
+    padding-bottom: 32px;
   }
 
   .input-container {
@@ -70,5 +90,12 @@ button > p,
 
   .timetable {
     height: auto;
+  }
+
+  footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
   }
 }

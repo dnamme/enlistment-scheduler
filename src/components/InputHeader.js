@@ -1,7 +1,7 @@
 import { FaClipboardList, FaPlus, FaTrashAlt } from 'react-icons/fa'
 import IconButton from './IconButton'
 
-function InputHeader({ color, onAddClick, onCopyClick, onDeleteClick, isPreEnlisted = false }) {
+function InputHeader({ color, onAddClick, onCopyClick, onDeleteClick, showDelete = true, isPreEnlisted = false }) {
   const mrgLeft = { margin: '4px 8px' }
 
   const flStyle = {
@@ -10,7 +10,7 @@ function InputHeader({ color, onAddClick, onCopyClick, onDeleteClick, isPreEnlis
   }
 
   return (
-    <div className="input-header" style={{ backgroundColor: color }}>
+    <div className="input-header" style={{ backgroundColor: color, position: 'sticky', top: 0 }}>
       {/* color indicator / pre-enlisted heading */}
       {
         isPreEnlisted
@@ -29,7 +29,7 @@ function InputHeader({ color, onAddClick, onCopyClick, onDeleteClick, isPreEnlis
       {/* buttons */}
       {/* <IconButton cStyle={mrgLeft} icon={<FaPlus />} text="Manual Add" onClick={onAddClick} /> */}
       <IconButton cStyle={mrgLeft} icon={<FaClipboardList />} text="Paste from AISIS" onClick={onCopyClick} />
-      { !isPreEnlisted && <IconButton cStyle={mrgLeft} icon={<FaTrashAlt />} text="Delete Group" onClick={onDeleteClick} /> }
+      { showDelete && !isPreEnlisted && <IconButton cStyle={mrgLeft} icon={<FaTrashAlt />} text="Delete Group" onClick={onDeleteClick} /> }
     </div>
   )
 }

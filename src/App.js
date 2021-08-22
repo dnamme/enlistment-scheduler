@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
-import { FaPlus } from 'react-icons/fa'
 import { v4 as uuidv4 } from 'uuid'
 import { randomColor } from 'randomcolor'
 
-import IconButton from './components/IconButton'
 import InputHeader from './components/InputHeader'
 import InputRow from './components/InputRow'
 import PreEnlistedRow from './components/PreEnlistedRow'
@@ -19,92 +17,16 @@ import './css/Timetable.css'
 function App() {
   const [preEnlistedData, setPreEnlistedData] = useState([])
   const [data, setData] = useState([
-    // {
-    //   color: '#3F51B5',
-    //   keyCode: 'CSCI 30',
-    //   courses: [
-    //     {
-    //       "code": "CSCI 30",
-    //       "section": "A",
-    //       "name": "DATA STRUCTURES AND ALGORITHMS",
-    //       "units": "3",
-    //       "time": "T-TH 0930-1100",
-    //       "room": "TBA",
-    //       "instructor": "GUADALUPE, Brian Christopher",
-    //       "max_slots": "35",
-    //       "lang": "ENG",
-    //       "level": "U",
-    //       "free_slots": "0",
-    //       "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
-    //       "s": "N",
-    //       "p": "N",
-    //       selected: false
-    //     }, {
-    //       "code": "CSCI 30",
-    //       "section": "B",
-    //       "name": "DATA STRUCTURES AND ALGORITHMS",
-    //       "units": "3",
-    //       "time": "T-TH 1100-1230",
-    //       "room": "TBA",
-    //       "instructor": "GUADALUPE, Brian Christopher",
-    //       "max_slots": "35",
-    //       "lang": "ENG",
-    //       "level": "U",
-    //       "free_slots": "0",
-    //       "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
-    //       "s": "N",
-    //       "p": "N",
-    //       selected: true
-    //     }, {
-    //       "code": "CSCI 30",
-    //       "section": "C",
-    //       "name": "DATA STRUCTURES AND ALGORITHMS",
-    //       "units": "3",
-    //       "time": "T-TH 1100-1230",
-    //       "room": "TBA",
-    //       "instructor": "PANGAN, Zachary",
-    //       "max_slots": "35",
-    //       "lang": "ENG",
-    //       "level": "U",
-    //       "free_slots": "8",
-    //       "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
-    //       "s": "N",
-    //       "p": "N",
-    //       selected: false
-    //     }
-    //   ]
-    // }
+    {
+      color: randomColor(),
+      keyCode: uuidv4(),
+      courses: []
+    }
   ])
   const [groupedData, setGroupedData] = useState({
     start: 8,
     end: 17,
-    data: [
-      // [
-      //   {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
-      //   {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
-      // ], [
-      //   {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
-      //   {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
-      //   {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
-      // ], [
-      //   {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
-      //   {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
-      //   {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
-      // ], [
-      //   {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
-      //   {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
-      //   {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
-      // ], [
-      //   {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
-      //   {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
-      //   {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
-      // ], []
-    ]
+    data: []
   })
 
   useEffect(() => {
@@ -139,6 +61,8 @@ function App() {
 
       for (let i = 0; i < 6; i++) {
         if (days[i]) {
+          if (i === 5 && ndata.length <= 5) ndata[i] = []
+          
           ndata[i].push({
             color: row.color, // random
             code: row.code,
@@ -271,6 +195,15 @@ function App() {
         }
       })
 
+      // create new group if last has data
+      if (nrd.length > 0 && nrd[nrd.length-1].courses.length > 0) {
+        nrd.push({
+          color: randomColor(),
+          keyCode: uuidv4(),
+          courses: []
+        })
+      }
+
       setData(nrd)
     } else {
       let nrped = preEnlistedData
@@ -294,8 +227,6 @@ function App() {
       })
 
       setPreEnlistedData([...nrped, ...new_data])
-
-      console.log(preEnlistedData)
     }
   }
 
@@ -331,10 +262,11 @@ function App() {
   }
 
 
+  const emptyTextWrapperStyle = { padding: '32px' }
   const emptyTextStyle = {
     textAlign: 'center',
-    margin: '16px auto',
-    maxWidth: '768px'
+    margin: '0 auto',
+    maxWidth: '512px'
   }
 
 
@@ -359,34 +291,39 @@ function App() {
           <h3>Enlistment Scheduler</h3>
         </header>
 
-        {/* pre-enlisted header */}
-        <InputHeader
-          onAddClick={() => {}}
-          onCopyClick={() => setCopyModalCode(-1)}
-          isPreEnlisted={true} />
-        {/* pre-enlisted rows or empty text */}
-        {
-          preEnlistedData.length > 0
-            ? preEnlistedData.map((row) =>
-                <PreEnlistedRow
-                  key={`PRE-ENLISTED_${row.code}_${row.section}`}
-                  row={row}
-                  onDelete={() => deleteRow(-1, row.code, row.section)} />
-              )
-            : <p style={emptyTextStyle}>
-                Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add.
-              </p>
-        }
+        <div>
+          {/* pre-enlisted header */}
+          <InputHeader
+            onAddClick={() => {}}
+            onCopyClick={() => setCopyModalCode(-1)}
+            isPreEnlisted={true} />
+          {/* pre-enlisted rows or empty text */}
+          {
+            preEnlistedData.length > 0
+              ? preEnlistedData.map((row) =>
+                  <PreEnlistedRow
+                    key={`PRE-ENLISTED_${row.code}_${row.section}`}
+                    row={row}
+                    onDelete={() => deleteRow(-1, row.code, row.section)} />
+                )
+              : <div style={emptyTextWrapperStyle}>
+                  <p style={emptyTextStyle}>
+                    Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Paste from AISIS</strong> button to add.
+                  </p>
+                </div>
+          }
+        </div>
 
         {/* build headers and rows */}
-        {data.map((group) =>
+        {data.map((group, gi) =>
           <div key={`INPUT-GROUP_${group.keyCode}`}>
             <InputHeader
               key={`INPUT-HEADER_${group.code}`}
               color={group.color}
               onAddClick={() => {}}
               onCopyClick={() => setCopyModalCode(group.keyCode)}
-              onDeleteClick={() => deleteGroup(group.keyCode)} />
+              onDeleteClick={() => deleteGroup(group.keyCode)}
+              showDelete={data.length > 1 && gi != data.length-1}/>
 
             {
               group.courses.length > 0
@@ -396,9 +333,11 @@ function App() {
                     row={row}
                     onSelect={() => selectClassFromGroup(group.keyCode, row.code, row.section)}
                     onDelete={() => deleteRow(group.keyCode, row.code, row.section)} />)
-                : <p style={emptyTextStyle}>
-                    Click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add any classes!
-                  </p>
+                : <div style={emptyTextWrapperStyle}>
+                    <p style={emptyTextStyle}>
+                      Click the <strong>Paste from AISIS</strong> button to add your classes!
+                    </p>
+                  </div>
             }
           </div>
         )}
@@ -406,55 +345,12 @@ function App() {
 
       <Timetable data={groupedData} />
 
-      {/* fixed, floating button */}
-      <IconButton
-        cStyle={{
-          position: 'fixed',
-          bottom: 0,
-          left: '40px',
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-          border: '1px solid gray'
-        }}
-        icon={<FaPlus />}
-        onClick={() => {
-          setData([
-            ...data,
-            {
-              color: randomColor(),
-              keyCode: uuidv4(),
-              courses: []
-            }
-          ])
-        }}
-        bgColor="white"
-        text="Add Group" />
+      {/* footer */}
+      <footer>
+        <p>&copy; Emman Evangelista &bull; v.1.0.2</p>
+      </footer>
     </div>
   )
 }
 
 export default App
-
-/*
-
-CSCI 30	A	DATA STRUCTURES AND ALGORITHMS	3	T-TH 0930-1100	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-CSCI 30	B	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-CSCI 30	C	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	PANGAN, Zachary	35	ENG	U	8	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-
-CSCI 30	A	DATA STRUCTURES AND ALGORITHMS	3	T-TH 0930-1100	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-CSCI 31	B	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-CSCI 32	C	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	PANGAN, Zachary	35	ENG	U	8	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-
-CSCI 30	A	DATA STRUCTURES AND ALGORITHMS	3	T-TH 0930-1100	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	aaa	N	N
-CSCI 31	B	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	aaa	N	N
-CSCI 32	C	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	PANGAN, Zachary	35	ENG	U	8	aaa	N	N
-
-CSCI 22	3	INTRODUCTION TO PROGRAMMING II	B	SUGAY, JESSICA O.	T-TH 1400-1600 / TBA	C	-
-ENLIT 12	3	LITERATURE: GLOBAL VOICES AND ENCOUNTERS	P-Q4	SUAREZ, ELINETH ELIZABETH L.	M-W-F 1400-1500 / TBA	C	-
-FILI 11	3	MALAYUNING KOMUNIKASYON	F-Q3	LIM, MARK BENEDICT F.	T-TH 1100-1230 / TBA	C	-
-HISTO 11	3	RIZAL AND THE EMERGENCE OF THE PHILIPPINE NATION	GG-Q4	CLAVERIA, BIANCA ANGELIEN A.	T-TH 0930-1100 / TBA	C	-
-MATH 30.23	3	APPLIED CALCULUS FOR SCIENCE AND ENGINEERING I	C	MALLARI, JUAN CARLO F.	T-TH 0800-0930 / TBA	C	-
-SocSc 12	3	UNDERSTANDING THE SELF	PSY-A-Q3	KEH, ALYDA YASMIN A.	M-W-F 0800-0900 / TBA	C	-
-THEO 11	3	FAITH, SPIRITUALITY, AND THE CHURCH	T-Q3	ROSAL, LESLEY ANNE A.	M-W-F 1100-1200 / TBA	C	-
-
-*/

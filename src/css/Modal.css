@@ -1,6 +1,7 @@
 .modal {
   position: fixed;
   z-index: 5;
+  overflow-y: auto;
   left: 0;
   top: 0;
   width: 100%;
@@ -12,9 +13,9 @@
 .modal-content {
   background-color: white;
   z-index: 6;
-  width: 75%;
-  /* height: 75%; */
-  margin: 4rem auto;
+  max-width: 768px;
+  width: 90%;
+  margin: 32px auto 64px auto;
   padding: 1rem 2rem;
   border-radius: 8px;
   display: flex;
