@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { randomColor } from 'randomcolor'
+import { FaArrowDown } from 'react-icons/fa'
 
 import InputHeader from './components/InputHeader'
 import InputRow from './components/InputRow'
@@ -345,9 +346,17 @@ function App() {
             }
           </div>
         )}
+        
+        {/* bottom */}
+        <div id="bottom" />
       </div>
 
       <Timetable data={groupedData} />
+
+      {/* scroll to bottom */}
+      <a className="scroll-to-bot" href="#bottom" >
+        <div><FaArrowDown size="24px" /></div>
+      </a>
 
       {/* footer */}
       <footer>
