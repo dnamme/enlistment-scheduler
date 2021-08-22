@@ -61,6 +61,8 @@ function App() {
 
       for (let i = 0; i < 6; i++) {
         if (days[i]) {
+          if (i == 5) ndata[i] = []
+          
           ndata[i].push({
             color: row.color, // random
             code: row.code,
