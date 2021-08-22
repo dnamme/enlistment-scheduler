@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
-import { FaPlus } from 'react-icons/fa'
 import { v4 as uuidv4 } from 'uuid'
 import { randomColor } from 'randomcolor'
 
-import IconButton from './components/IconButton'
 import InputHeader from './components/InputHeader'
 import InputRow from './components/InputRow'
 import PreEnlistedRow from './components/PreEnlistedRow'
@@ -18,7 +16,13 @@ import './css/Timetable.css'
 
 function App() {
   const [preEnlistedData, setPreEnlistedData] = useState([])
-  const [data, setData] = useState([])
+  const [data, setData] = useState([
+    {
+      color: randomColor(),
+      keyCode: uuidv4(),
+      courses: []
+    }
+  ])
   const [groupedData, setGroupedData] = useState({
     start: 8,
     end: 17,
@@ -189,6 +193,15 @@ function App() {
         }
       })
 
+      // create new group if last has data
+      if (nrd.length > 0 && nrd[nrd.length-1].courses.length > 0) {
+        nrd.push({
+          color: randomColor(),
+          keyCode: uuidv4(),
+          courses: []
+        })
+      }
+
       setData(nrd)
     } else {
       let nrped = preEnlistedData
@@ -323,30 +336,6 @@ function App() {
       </div>
 
       <Timetable data={groupedData} />
-
-      {/* fixed, floating button */}
-      <IconButton
-        cStyle={{
-          position: 'fixed',
-          bottom: 0,
-          left: '40px',
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-          border: '1px solid gray'
-        }}
-        icon={<FaPlus />}
-        onClick={() => {
-          setData([
-            ...data,
-            {
-              color: randomColor(),
-              keyCode: uuidv4(),
-              courses: []
-            }
-          ])
-        }}
-        bgColor="white"
-        text="Add Group" />
 
       {/* footer */}
       <footer>
