@@ -262,10 +262,11 @@ function App() {
   }
 
 
+  const emptyTextWrapperStyle = { padding: '32px' }
   const emptyTextStyle = {
     textAlign: 'center',
-    margin: '16px auto',
-    maxWidth: '768px'
+    margin: '0 auto',
+    maxWidth: '512px'
   }
 
 
@@ -304,9 +305,11 @@ function App() {
                   row={row}
                   onDelete={() => deleteRow(-1, row.code, row.section)} />
               )
-            : <p style={emptyTextStyle}>
-                Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add.
-              </p>
+            : <div style={emptyTextWrapperStyle}>
+                <p style={emptyTextStyle}>
+                  Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Paste from AISIS</strong> button to add.
+                </p>
+              </div>
         }
 
         {/* build headers and rows */}
@@ -328,9 +331,11 @@ function App() {
                     row={row}
                     onSelect={() => selectClassFromGroup(group.keyCode, row.code, row.section)}
                     onDelete={() => deleteRow(group.keyCode, row.code, row.section)} />)
-                : <p style={emptyTextStyle}>
-                    Click the <strong>Manual Add</strong> or <strong>Paste from AISIS</strong> buttons to add any classes!
-                  </p>
+                : <div style={emptyTextWrapperStyle}>
+                    <p style={emptyTextStyle}>
+                      Click the <strong>Paste from AISIS</strong> button to add your classes!
+                    </p>
+                  </div>
             }
           </div>
         )}
