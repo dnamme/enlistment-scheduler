@@ -18,93 +18,11 @@ import './css/Timetable.css'
 
 function App() {
   const [preEnlistedData, setPreEnlistedData] = useState([])
-  const [data, setData] = useState([
-    // {
-    //   color: '#3F51B5',
-    //   keyCode: 'CSCI 30',
-    //   courses: [
-    //     {
-    //       "code": "CSCI 30",
-    //       "section": "A",
-    //       "name": "DATA STRUCTURES AND ALGORITHMS",
-    //       "units": "3",
-    //       "time": "T-TH 0930-1100",
-    //       "room": "TBA",
-    //       "instructor": "GUADALUPE, Brian Christopher",
-    //       "max_slots": "35",
-    //       "lang": "ENG",
-    //       "level": "U",
-    //       "free_slots": "0",
-    //       "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
-    //       "s": "N",
-    //       "p": "N",
-    //       selected: false
-    //     }, {
-    //       "code": "CSCI 30",
-    //       "section": "B",
-    //       "name": "DATA STRUCTURES AND ALGORITHMS",
-    //       "units": "3",
-    //       "time": "T-TH 1100-1230",
-    //       "room": "TBA",
-    //       "instructor": "GUADALUPE, Brian Christopher",
-    //       "max_slots": "35",
-    //       "lang": "ENG",
-    //       "level": "U",
-    //       "free_slots": "0",
-    //       "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
-    //       "s": "N",
-    //       "p": "N",
-    //       selected: true
-    //     }, {
-    //       "code": "CSCI 30",
-    //       "section": "C",
-    //       "name": "DATA STRUCTURES AND ALGORITHMS",
-    //       "units": "3",
-    //       "time": "T-TH 1100-1230",
-    //       "room": "TBA",
-    //       "instructor": "PANGAN, Zachary",
-    //       "max_slots": "35",
-    //       "lang": "ENG",
-    //       "level": "U",
-    //       "free_slots": "8",
-    //       "remarks": "ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.",
-    //       "s": "N",
-    //       "p": "N",
-    //       selected: false
-    //     }
-    //   ]
-    // }
-  ])
+  const [data, setData] = useState([])
   const [groupedData, setGroupedData] = useState({
     start: 8,
     end: 17,
-    data: [
-      // [
-      //   {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
-      //   {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
-      // ], [
-      //   {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
-      //   {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
-      //   {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
-      // ], [
-      //   {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
-      //   {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
-      //   {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
-      // ], [
-      //   {code: 'PHYED 161', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'CSCI 30', start: 11, end: 12.5, startTime: '11:00 AM', endTime: '12:30 PM'},
-      //   {code: 'PHILO 11.04', start: 14, end: 15.5, startTime: '02:00 PM', endTime: '03:30 PM'},
-      //   {code: 'MATH 30.24', start: 15.5, end: 17, startTime: '03:30 PM', endTime: '05:00 PM'},
-      // ], [
-      //   {code: 'MATH 51.3', start: 8, end: 9, startTime: '08:00 AM', endTime: '09:00 AM'},
-      //   {code: 'ArtAp 10', start: 9, end: 10, startTime: '09:00 AM', endTime: '10:00 AM'},
-      //   {code: 'PHYS 23.11', start: 11, end: 12, startTime: '11:00 AM', endTime: '12:00 PM'},
-      //   {code: 'PHYS 23.12', start: 13, end: 15, startTime: '01:00 PM', endTime: '03:00 PM'},
-      // ], []
-    ]
+    data: []
   })
 
   useEffect(() => {
@@ -434,27 +352,3 @@ function App() {
 }
 
 export default App
-
-/*
-
-CSCI 30	A	DATA STRUCTURES AND ALGORITHMS	3	T-TH 0930-1100	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-CSCI 30	B	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-CSCI 30	C	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	PANGAN, Zachary	35	ENG	U	8	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-
-CSCI 30	A	DATA STRUCTURES AND ALGORITHMS	3	T-TH 0930-1100	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-CSCI 31	B	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-CSCI 32	C	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	PANGAN, Zachary	35	ENG	U	8	ALL SLOTS FOR BS CS MAJORS. ALL SLOTS FOR BSMS CS MAJORS. ALL SLOTS FOR BS CS-DGDD MAJORS.	N	N
-
-CSCI 30	A	DATA STRUCTURES AND ALGORITHMS	3	T-TH 0930-1100	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	aaa	N	N
-CSCI 31	B	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	GUADALUPE, Brian Christopher	35	ENG	U	0	aaa	N	N
-CSCI 32	C	DATA STRUCTURES AND ALGORITHMS	3	T-TH 1100-1230	TBA	PANGAN, Zachary	35	ENG	U	8	aaa	N	N
-
-CSCI 22	3	INTRODUCTION TO PROGRAMMING II	B	SUGAY, JESSICA O.	T-TH 1400-1600 / TBA	C	-
-ENLIT 12	3	LITERATURE: GLOBAL VOICES AND ENCOUNTERS	P-Q4	SUAREZ, ELINETH ELIZABETH L.	M-W-F 1400-1500 / TBA	C	-
-FILI 11	3	MALAYUNING KOMUNIKASYON	F-Q3	LIM, MARK BENEDICT F.	T-TH 1100-1230 / TBA	C	-
-HISTO 11	3	RIZAL AND THE EMERGENCE OF THE PHILIPPINE NATION	GG-Q4	CLAVERIA, BIANCA ANGELIEN A.	T-TH 0930-1100 / TBA	C	-
-MATH 30.23	3	APPLIED CALCULUS FOR SCIENCE AND ENGINEERING I	C	MALLARI, JUAN CARLO F.	T-TH 0800-0930 / TBA	C	-
-SocSc 12	3	UNDERSTANDING THE SELF	PSY-A-Q3	KEH, ALYDA YASMIN A.	M-W-F 0800-0900 / TBA	C	-
-THEO 11	3	FAITH, SPIRITUALITY, AND THE CHURCH	T-Q3	ROSAL, LESLEY ANNE A.	M-W-F 1100-1200 / TBA	C	-
-
-*/
