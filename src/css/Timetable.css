@@ -5,6 +5,7 @@
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
   background-color: white;
+  max-width: 400px;
 }
 
 .timetable p { margin: 0; }
@@ -19,7 +20,7 @@
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content repeat(20, 1fr);
+  grid-template-rows: 48px repeat(18, 1fr);
 }
 
 .timestamp {
@@ -60,6 +61,7 @@
 .course-block > .course-code {
   text-align: center;
   grid-row: 1 / -1;
+  line-height: 1.0;
 }
 
 .course-block > .time { font-size: 0.563rem; }
@@ -67,7 +69,10 @@
 .course-block > .time.end   { grid-row: 3 / 4; justify-self: flex-end; }
 
 @media screen and (max-width: 1023px) {
-  .timetable > * {
-    grid-template-rows: 48px repeat(20, 64px) !important;
+  .timetable {
+    border: 2px solid black;
+    margin: 0 auto;
+    height: 95vh;
+    box-sizing: border-box;
   }
 }
