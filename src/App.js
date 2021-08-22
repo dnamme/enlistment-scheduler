@@ -315,7 +315,7 @@ function App() {
         </div>
 
         {/* build headers and rows */}
-        {data.map((group) =>
+        {data.map((group, gi) =>
           <div key={`INPUT-GROUP_${group.keyCode}`}>
             <InputHeader
               key={`INPUT-HEADER_${group.code}`}
@@ -323,7 +323,7 @@ function App() {
               onAddClick={() => {}}
               onCopyClick={() => setCopyModalCode(group.keyCode)}
               onDeleteClick={() => deleteGroup(group.keyCode)}
-              showDelete={data.length > 1}/>
+              showDelete={data.length > 1 && gi != data.length-1}/>
 
             {
               group.courses.length > 0
