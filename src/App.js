@@ -61,7 +61,7 @@ function App() {
 
       for (let i = 0; i < 6; i++) {
         if (days[i]) {
-          if (i == 5) ndata[i] = []
+          if (i === 5 && ndata.length <= 5) ndata[i] = []
           
           ndata[i].push({
             color: row.color, // random
@@ -227,8 +227,6 @@ function App() {
       })
 
       setPreEnlistedData([...nrped, ...new_data])
-
-      console.log(preEnlistedData)
     }
   }
 
@@ -293,26 +291,28 @@ function App() {
           <h3>Enlistment Scheduler</h3>
         </header>
 
-        {/* pre-enlisted header */}
-        <InputHeader
-          onAddClick={() => {}}
-          onCopyClick={() => setCopyModalCode(-1)}
-          isPreEnlisted={true} />
-        {/* pre-enlisted rows or empty text */}
-        {
-          preEnlistedData.length > 0
-            ? preEnlistedData.map((row) =>
-                <PreEnlistedRow
-                  key={`PRE-ENLISTED_${row.code}_${row.section}`}
-                  row={row}
-                  onDelete={() => deleteRow(-1, row.code, row.section)} />
-              )
-            : <div style={emptyTextWrapperStyle}>
-                <p style={emptyTextStyle}>
-                  Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Paste from AISIS</strong> button to add.
-                </p>
-              </div>
-        }
+        <div>
+          {/* pre-enlisted header */}
+          <InputHeader
+            onAddClick={() => {}}
+            onCopyClick={() => setCopyModalCode(-1)}
+            isPreEnlisted={true} />
+          {/* pre-enlisted rows or empty text */}
+          {
+            preEnlistedData.length > 0
+              ? preEnlistedData.map((row) =>
+                  <PreEnlistedRow
+                    key={`PRE-ENLISTED_${row.code}_${row.section}`}
+                    row={row}
+                    onDelete={() => deleteRow(-1, row.code, row.section)} />
+                )
+              : <div style={emptyTextWrapperStyle}>
+                  <p style={emptyTextStyle}>
+                    Looks like you haven't added any pre-enlisted classes yet! If you have any, click the <strong>Paste from AISIS</strong> button to add.
+                  </p>
+                </div>
+          }
+        </div>
 
         {/* build headers and rows */}
         {data.map((group) =>
