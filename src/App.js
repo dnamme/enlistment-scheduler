@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { randomColor } from 'randomcolor'
+import { FaArrowDown } from 'react-icons/fa'
 
 import InputHeader from './components/InputHeader'
 import InputRow from './components/InputRow'
@@ -69,7 +70,8 @@ function App() {
             start: rstart_hr, // in x.x form
             end: rend_hr, // in x.x form
             startTime: `${st_hr > 12 ? st_hr-12 : st_hr}:${Math.floor(rstart%100).toString().padStart(2, '0')} ${rstart < 1200 ? 'AM' : 'PM'}`,
-            endTime: `${ed_hr > 12 ? ed_hr-12 : ed_hr}:${Math.floor(rend%100).toString().padStart(2, '0')} ${rend < 1200 ? 'AM' : 'PM'}`
+            endTime: `${ed_hr > 12 ? ed_hr-12 : ed_hr}:${Math.floor(rend%100).toString().padStart(2, '0')} ${rend < 1200 ? 'AM' : 'PM'}`,
+            uuid: row._uuid
           })
         }
       }
@@ -106,7 +108,8 @@ function App() {
                 start: rstart_hr, // in x.x form
                 end: rend_hr, // in x.x form
                 startTime: `${st_hr > 12 ? st_hr-12 : st_hr}:${(intStart%100).toString().padStart(2, '0')} ${rstart_hr < 12 ? 'AM' : 'PM'}`,
-                endTime: `${ed_hr > 12 ? ed_hr-12 : ed_hr}:${(intEnd%100).toString().padStart(2, '0')} ${rend_hr < 12 ? 'AM' : 'PM'}`
+                endTime: `${ed_hr > 12 ? ed_hr-12 : ed_hr}:${(intEnd%100).toString().padStart(2, '0')} ${rend_hr < 12 ? 'AM' : 'PM'}`,
+                uuid: group.courses[i]._uuid
               })
             }
           }
@@ -181,6 +184,7 @@ function App() {
             s: cols[12], // not needed
             p: cols[13], // not needed
             selected: false, // default
+            _uuid: uuidv4(),
             _days: days,
             _start: Math.floor(st/100) + (st%100)/100, // in x.x (hr) form
             _end: Math.floor(en/100) + (st%100)/100, // in x.x (hr) form
@@ -222,6 +226,7 @@ function App() {
             credit: cols[6], // not needed
             remarks: cols[7], // not needed
             color: randomColor(), // random
+            _uuid: uuidv4()
           })
         }
       })
@@ -302,7 +307,7 @@ function App() {
             preEnlistedData.length > 0
               ? preEnlistedData.map((row) =>
                   <PreEnlistedRow
-                    key={`PRE-ENLISTED_${row.code}_${row.section}`}
+                    key={`PRE-ENLISTED_${row.code}_${row.section}_${row._uuid}`}
                     row={row}
                     onDelete={() => deleteRow(-1, row.code, row.section)} />
                 )
@@ -329,7 +334,7 @@ function App() {
               group.courses.length > 0
                 ? group.courses.map((row) =>
                   <InputRow
-                    key={`INPUT-ROW_${group.keyCode}_${row.code}_${row.section}`}
+                    key={`INPUT-ROW_${group.keyCode}_${row.code}_${row.section}_${row._uuid}`}
                     row={row}
                     onSelect={() => selectClassFromGroup(group.keyCode, row.code, row.section)}
                     onDelete={() => deleteRow(group.keyCode, row.code, row.section)} />)
@@ -341,13 +346,21 @@ function App() {
             }
           </div>
         )}
+        
+        {/* bottom */}
+        <div id="bottom" />
       </div>
 
       <Timetable data={groupedData} />
 
+      {/* scroll to bottom */}
+      <a className="scroll-to-bot" href="#bottom" >
+        <div><FaArrowDown size="24px" /></div>
+      </a>
+
       {/* footer */}
       <footer>
-        <p>&copy; Emman Evangelista &bull; v.1.0.2</p>
+        <p>&copy; Emman Evangelista &bull; v.1.0.3</p>
       </footer>
     </div>
   )
