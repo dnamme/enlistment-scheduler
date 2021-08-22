@@ -317,7 +317,8 @@ function App() {
               color={group.color}
               onAddClick={() => {}}
               onCopyClick={() => setCopyModalCode(group.keyCode)}
-              onDeleteClick={() => deleteGroup(group.keyCode)} />
+              onDeleteClick={() => deleteGroup(group.keyCode)}
+              showDelete={data.length > 1}/>
 
             {
               group.courses.length > 0
