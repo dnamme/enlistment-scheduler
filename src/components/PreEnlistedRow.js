@@ -1,4 +1,4 @@
-import { FaTimes } from 'react-icons/fa'
+import { FaTimes } from "react-icons/fa"
 
 function PreEnlistedRow({ row, onDelete }) {
   return (
@@ -10,8 +10,9 @@ function PreEnlistedRow({ row, onDelete }) {
       <p>{row.schedLoc}</p>
 
       <FaTimes
-        style={{ cursor: 'pointer', marginLeft: 'auto' }}
-        onClick={onDelete} />
+        style={{ cursor: "pointer", marginLeft: "auto" }}
+        onClick={onDelete}
+      />
     </div>
   )
 }
