@@ -8,7 +8,9 @@
   max-width: 400px;
 }
 
-.timetable p { margin: 0; }
+.timetable p {
+  margin: 0;
+}
 
 .timetable .heading {
   text-align: center;
@@ -28,7 +30,6 @@
   padding-left: 4px;
   font-size: 0.75rem;
 }
-
 
 .course-block {
   background-color: beige;
@@ -61,12 +62,20 @@
 .course-block > .course-code {
   text-align: center;
   grid-row: 1 / -1;
-  line-height: 1.0;
+  line-height: 1;
 }
 
-.course-block > .time { font-size: 0.563rem; }
-.course-block > .time.start { grid-row: 1 / 2; justify-self: flex-start; }
-.course-block > .time.end   { grid-row: 3 / 4; justify-self: flex-end; }
+.course-block > .time {
+  font-size: 0.563rem;
+}
+.course-block > .time.start {
+  grid-row: 1 / 2;
+  justify-self: flex-start;
+}
+.course-block > .time.end {
+  grid-row: 3 / 4;
+  justify-self: flex-end;
+}
 
 @media screen and (max-width: 1023px) {
   .timetable {
