@@ -170,17 +170,34 @@ function App() {
     let new_data = []
 
     if (kc !== -1) {
-      raw_rows.forEach((row) => {
-        let cols = row.split("\t")
+      // split
+      for (let i = 0; i < raw_rows.length; i++) {
+        raw_rows[i] = raw_rows[i].split("\t")
+      }
 
+      // combine
+      for (let i = 0; i < raw_rows.length - 1; i++) {
+        if (raw_rows[i].length === 5 && raw_rows[i + 1].length === 10) {
+          raw_rows[i][4] += " " + raw_rows[i + 1][0]
+          for (let j = 1; j < 10; j++) {
+            raw_rows[i].push(raw_rows[i + 1][j])
+          }
+        }
+      }
+
+      raw_rows.forEach((cols) => {
         if (cols.length === 14) {
           let rawDays = cols[4].split(" ")[0].toUpperCase()
           const daysOfWeek = ["M", "T", "W", "TH", "F", "S"]
           let days = []
-          for (let i = 0; i < 6; i++) {
-            if (rawDays.includes(daysOfWeek[i]) || rawDays.includes("D"))
-              days[i] = true
-            else days[i] = false
+
+          if (rawDays.includes("TUTORIAL")) days.fill(false, 0, 6)
+          else {
+            for (let i = 0; i < 6; i++) {
+              if (rawDays.includes(daysOfWeek[i]) || rawDays.includes("D"))
+                days[i] = true
+              else days[i] = false
+            }
           }
 
           let st = parseInt(cols[4].split(" ")[1].split("-")[0])
@@ -393,7 +410,7 @@ function App() {
 
       {/* footer */}
       <footer>
-        <p>&copy; Emman Evangelista &bull; v.1.0.3</p>
+        <p>&copy; Emman Evangelista &bull; v.1.0.4</p>
       </footer>
     </div>
   )
