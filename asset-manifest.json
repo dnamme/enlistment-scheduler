@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/enlistment-scheduler/static/css/main.ba40a33a.chunk.css",
-    "main.js": "/enlistment-scheduler/static/js/main.98ffcbf3.chunk.js",
-    "main.js.map": "/enlistment-scheduler/static/js/main.98ffcbf3.chunk.js.map",
+    "main.js": "/enlistment-scheduler/static/js/main.b6df759f.chunk.js",
+    "main.js.map": "/enlistment-scheduler/static/js/main.b6df759f.chunk.js.map",
     "runtime-main.js": "/enlistment-scheduler/static/js/runtime-main.39dda9c7.js",
     "runtime-main.js.map": "/enlistment-scheduler/static/js/runtime-main.39dda9c7.js.map",
     "static/js/2.530ae68a.chunk.js": "/enlistment-scheduler/static/js/2.530ae68a.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.39dda9c7.js",
     "static/js/2.530ae68a.chunk.js",
     "static/css/main.ba40a33a.chunk.css",
-    "static/js/main.98ffcbf3.chunk.js"
+    "static/js/main.b6df759f.chunk.js"
   ]
 }
