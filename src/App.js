@@ -33,20 +33,25 @@ function App() {
     // rebuild timetable
     let nstart = 24
     let nend = 0
-    let ndata = [[], [], [], [], []]
-
-    const daysOfWeek = ["M", "T", "W", "TH", "F", "S"]
+    let ndata = [[], [], [], [], [], []]
 
     // adding pre-enlisted
     preEnlistedData.forEach((row) => {
       let schedLoc = row.schedLoc
       let rawDays = schedLoc.split("/")[0].split(" ")[0]
       let days = []
-      for (let i = 0; i < 6; i++) {
-        if (rawDays.includes(daysOfWeek[i]) || rawDays.includes("D"))
-          days[i] = true
-        else days[i] = false
-      }
+
+      if (rawDays.includes("TUTORIAL")) days.fill(false, 0, 6)
+      else if (rawDays.includes("D") || rawDays.includes("DAILY"))
+        days.fill(true, 0, 6)
+      else if (rawDays.includes("M-TH"))
+        days = [true, false, false, true, false, false]
+      else if (rawDays.includes("T-F"))
+        days = [false, true, false, false, true, false]
+      else if (rawDays.includes("W"))
+        days = [false, false, true, false, false, false]
+      else if (rawDays.includes("SAT"))
+        days = [false, false, false, false, false, true]
 
       let rstart = parseInt(schedLoc.split("/")[0].split(" ")[1].split("-")[0]) // in xxxx form
       let rend = parseInt(schedLoc.split("/")[0].split(" ")[1].split("-")[1]) // in xxxx form
@@ -91,11 +96,18 @@ function App() {
         if (group.courses[i].selected) {
           let rawDays = group.courses[i].time.split(" ")[0]
           let days = []
-          for (let j = 0; j < 6; j++) {
-            if (rawDays.includes(daysOfWeek[j]) || rawDays.includes("D"))
-              days[j] = true
-            else days[j] = false
-          }
+
+          if (rawDays.includes("TUTORIAL")) days.fill(false, 0, 6)
+          else if (rawDays.includes("D") || rawDays.includes("DAILY"))
+            days.fill(true, 0, 6)
+          else if (rawDays.includes("M-TH"))
+            days = [true, false, false, true, false, false]
+          else if (rawDays.includes("T-F"))
+            days = [false, true, false, false, true, false]
+          else if (rawDays.includes("W"))
+            days = [false, false, true, false, false, false]
+          else if (rawDays.includes("SAT"))
+            days = [false, false, false, false, false, true]
 
           let intStart = parseInt(
             group.courses[i].time.split(" ")[1].split("-")[0]
@@ -188,17 +200,19 @@ function App() {
       raw_rows.forEach((cols) => {
         if (cols.length === 14) {
           let rawDays = cols[4].split(" ")[0].toUpperCase()
-          const daysOfWeek = ["M", "T", "W", "TH", "F", "S"]
           let days = []
 
           if (rawDays.includes("TUTORIAL")) days.fill(false, 0, 6)
-          else {
-            for (let i = 0; i < 6; i++) {
-              if (rawDays.includes(daysOfWeek[i]) || rawDays.includes("D"))
-                days[i] = true
-              else days[i] = false
-            }
-          }
+          else if (rawDays.includes("D") || rawDays.includes("DAILY"))
+            days.fill(true, 0, 6)
+          else if (rawDays.includes("M-TH"))
+            days = [true, false, false, true, false, false]
+          else if (rawDays.includes("T-F"))
+            days = [false, true, false, false, true, false]
+          else if (rawDays.includes("W"))
+            days = [false, false, true, false, false, false]
+          else if (rawDays.includes("SAT"))
+            days = [false, false, false, false, false, true]
 
           let st = parseInt(cols[4].split(" ")[1].split("-")[0])
           let en = parseInt(cols[4].split(" ")[1].split("-")[1])
